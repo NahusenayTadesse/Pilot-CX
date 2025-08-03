@@ -3,12 +3,12 @@
 
 </script>
 
-<section class="h-[100vh] flex pt-[100px] justify-center items-start min-h-[70vh]text-white text-center">
+<section class="lg:h-[100vh] h-[80vh] flex lg:pt-[100px] pt-[40px] justify-center items-start min-h-[70vh]text-white text-center">
     <div class="mx-auto">
         <h1 class="mb-4 font-bold font-sans text-dark-1">
-            With PilotCX You Navigate <br /> Customer Experience with Ease
+            With PilotCX You Navigate <br class="hidden lg:flex" /> Customer Experience with Ease
         </h1>
-        <p class="text-[17px] font-Inter text-dark-2 mb-8 w-[649px] justify-self-center">
+        <p class="text-[17px] font-Inter text-dark-2 mb-8 lg:w-[649px] justify-self-center">
             While you focus on building product and hitting growth milestones, PilotCX keeps your support smooth, responsive, and always on course.
         </p>
         <div class="flex flex-row justify-center gap-[26px]">

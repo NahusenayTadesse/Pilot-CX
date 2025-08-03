@@ -153,7 +153,7 @@
     font-family: var(--font-Inter);
    }
 
-h5 {
+  h5 {
     line-height: 140%;
     font-weight: 500;
     font-size: 27px;
@@ -171,6 +171,16 @@ h5 {
     font-size: 17px;
     font-family: var(--font-Inter);
    }
+
+    @media (max-width: 640px) {
+      h1 { font-size: 44px; }
+      h2 { font-size: 33px; }
+      h3 { font-size: 28px; }
+      h4 { font-size: 23px; }
+      h5 { font-size: 19px; }
+      h6 { font-size: 17px; }
+      p  { font-size: 16px; }
+    }
 
 @layer base {
   * {

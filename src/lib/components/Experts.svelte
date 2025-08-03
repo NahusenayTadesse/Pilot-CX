@@ -4,11 +4,11 @@
 
 {#snippet steps(picture, title, titlespan, description, orientation)}
 
-  <div class="flex {orientation ? 'flex-row': 'flex-row-reverse'} flex-wrap items-center justify-between w-[80%] gap-0">
-    <div class="w-1/2 {orientation ? '':'flex items-end justify-end'}">
-        <img src={picture} alt={titlespan} class="w-[434px] h-[442px] object-cover" />
+  <div class="flex {orientation ? 'lg:flex-row': 'lg:flex-row-reverse'} flex-wrap flex-col items-center justify-between lg:w-[80%] w-full gap-0">
+    <div class="lg:w-1/2 w-full {orientation ? '':'flex lg:items-end lg:justify-end items-center justify-center'}">
+        <img src={picture} alt={titlespan} class="lg:w-[434px] w-full h-full lg:h-[442px] object-cover" />
     </div>
-    <div class="w-1/2 flex flex-col gap-2 items-start">
+    <div class="lg:w-1/2 w-full flex flex-col gap-2 items-center lg:items-start">
        <h4 class="text-dark-6 font-semibold">{title} : <span class="text-light-blue-4">{titlespan}</span> </h4>
        <p class="text-dark-4">{description}</p>
     </div>
@@ -24,38 +24,42 @@
     
 {/snippet}
 
-<section class="flex flex-col items-center justify-center w-full gap-2">
-    <div class="flex flex-col h-[50vh] mt-8">
-     <h1 class="text-[96px] text-dark-6">Experts On <span class="text-light-blue-4">Saas</span> Technology</h1>
+<section class="flex flex-col items-center justify-center w-full gap-2 p-4">
+    <div class="flex flex-col lg:h-[50vh] lg:mt-8 pb-8">
+     <h1 class="text-[96px] text-dark-6 text-center">Experts On <span class="text-light-blue-4">Saas</span> Technology</h1>
      </div>
      <div class="flex flex-col">
         <h2 class="text-dark-6">How it Works<span class="text-light-blue-4">?</span></h2>
      </div>
 
      {@render steps('/images/step1.svg', 'Step 1', 'Understand Your Needs', 
-     ' We begin with a 30-minute call to explore your product, support setup, and goals. It’s fast, focused, and friendly.', true)}
-     {@render steps('/images/step2.svg', 'Step 2', 'Your Custom Plan', 
-     'Within 48 hours, we’ll send you a custom plan with clear pricing, what’s included, and how we’ll handle your customer support.', false)}
+     "We start with a quick 30-minute call to learn about your product and support goals. Within 48 hours, you'll get a tailored proposal with clear pricing and a CX strategy built around your needs.", true)}
+     {@render steps('/images/step3.svg', 'Step 2', 'Strategy Meets Structure', 
+     'We host a kickoff call to align on support tone, tools, expected volume, workflows, and success metrics—making sure we’re fully synced before launch. ', false)}
      
-     {@render steps('/images/step3.svg', 'Step 3', 'Strategy Meets Structure', 
-     'A kickoff call to align on tone, tools, support volume, escalation process, and success metrics.', true)}
-
-     {@render steps('/images/step4.svg', 'Step 4', 'Your Brand, Our Agents', 
-        'We train your support team on your tools, product, tone, and customer scenarios—fast and thoroughly.', false
+      {@render steps('/images/step4.svg', 'Step 3', 'Your Brand, Our Agents', 
+        'Our team gets trained on your tools, product, and brand tone. We prepare fast but thoroughly to ensure agents are ready to deliver on day one. ', true
      )}
+     
+     {@render steps('/images/steps5.svg', 'Step 4', 'Test and Launch', 
+     'We run a 24-hour dry run with real tickets so you can review quality. Once ready, we go live—providing full support while tracking performance and improving continuously.', false)}
+     
+     
+
+    
 
 
 
 </section>
 
-<section id="why-choose-us" class="flex flex-row flex-wrap items-center justify-center justify-self-center ml-[8%] mr-[5%]">
+<section id="why-choose-us" class="flex lg:flex-row flex-col flex-wrap items-center justify-center justify-self-center ml-[8%] mr-[5%] mt-32">
 
- <div class="flex flex-col items-start justify-center gap-2 w-[40%]">
+ <div class="flex flex-col lg:items-start items-center justify-center gap-2 w-full lg:w-[40%]">
     <h2 class="text-dark-6 text-start">Why Choose <span class="text-light-blue-4">Us?</span></h2>
     <p class="text-dark-4">We combine deep SaaS knowledge with reliable, high-quality support so your customers get the help they need, and you get time back to focus on building.</p>
  </div>
 
- <div class="w-[60%] grid grid-cols-2 gap-[20px] justify-end">
+ <div class=" w-full lg:w-[60%] grid lg:grid-cols-2 grid-cols-1 gap-[20px] justify-end">
     {@render choose('/images/choose1.svg', 'Fast and flexible onboarding')}
     {@render choose('/images/choose2.svg', 'Startup friendly pricing')}
     {@render choose('/images/choose3.svg', 'Startup friendly pricing')}

@@ -13,13 +13,13 @@
 
 <footer class="pt-[220px] pb-[100px] bg-cover bg-no-repeat bg-[#2e86c7] flex flex-col" style="background-image: url('/Footer.webp');">
      
-  <div class="flex flex-col items-center justify-center gap-8 pb-32 pt-16">
+  <div class="flex flex-col items-center justify-center gap-8 lg:pb-32 pt-16">
      <h2 class="text-dark-1 text-center">Scale Confidently With a Support <br /> Team That Knows SaaS</h2>
      <a href="/contact" class="{btnWhiteFilled} !py-[12px] !text-[17px]">Get a Quote</a>
   </div>
 
-  <div class='flex flex-row flex-wrap justify-evenly items-start w-[90%] mx-auto mt-16 '>
-      <div class="flex flex-col gap-4 h-[200px]">
+  <div class='grid lg:grid-cols-4 grid-cols-1 lg:justify-items-center justify-center items-start content-center gap-4 w-[90%] mx-auto mt-16 '>
+      <div class="flex flex-col gap-4 lg:h-[200px]">
           <img src="/Logo.svg" alt="Pilot CX Logo" class="w-[190px] h-[46px]" />
           <h4 class="text-dark-1">Your CX Co-pilot</h4>
       </div>
