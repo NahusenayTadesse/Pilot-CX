@@ -18,7 +18,7 @@
     <Services />
 </section>
 
-<section id="how-it-works" class="mb-32">
+<section id="how-it-works" class="relative">
     <Experts />
 </section>
 

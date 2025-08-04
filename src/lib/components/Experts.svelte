@@ -1,4 +1,7 @@
  <script>
+	import RiveAnimation from '$lib/RiveAnimation.svelte';
+   let riveInstance;
+
 
  </script>
 
@@ -24,8 +27,14 @@
     
 {/snippet}
 
-<section class="flex flex-col items-center justify-center w-full gap-2 p-4">
-    <div class="flex flex-col lg:h-[50vh] lg:mt-8 pb-8">
+<section class="relative flex flex-col items-center justify-center w-full gap-2 p-4">
+   <button class="absolute -top-72 z-1 w-full"  >
+<RiveAnimation src="/animations/paper_plane_for_exper_section_loop_.riv" {riveInstance}  />
+</button>
+    
+    <div class="relative flex flex-col lg:h-[50vh] mt-8 pb-8">
+      
+     
      <h1 class="text-[96px] text-dark-6 text-center">Experts On <span class="text-light-blue-4">Saas</span> Technology</h1>
      </div>
      <div class="flex flex-col">
@@ -51,6 +60,8 @@
 
 
 </section>
+
+
 
 <section id="why-choose-us" class="flex lg:flex-row flex-col flex-wrap items-center justify-center justify-self-center ml-[8%] mr-[5%] mt-32">
 

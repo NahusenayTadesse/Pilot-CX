@@ -1,10 +1,12 @@
 <script>
 	import { btnWhiteFilled, btnWhiteHallow } from "$lib/global.svelte";
+    import RiveAnimation from "$lib/RiveAnimation.svelte";
+    let riveInstance;
 
 </script>
 
 <section class="lg:h-[100vh] h-[80vh] flex lg:pt-[100px] pt-[40px] justify-center items-start min-h-[70vh]text-white text-center">
-    <div class="mx-auto">
+    <div class="mx-auto z-2">
         <h1 class="mb-4 font-bold font-sans text-dark-1">
             With PilotCX You Navigate <br class="hidden lg:flex" /> Customer Experience with Ease
         </h1>
@@ -20,7 +22,15 @@
             </a>
         </div>
     </div>
+
+    
 </section>
+<button class="absolute top-0 left-0 z-1 w-[110%] h-[100%]"  >
+
+
+
+<RiveAnimation src="/animations/paper_plane_loop.riv" {riveInstance}  />
+</button>
 
 <style>
     section {
