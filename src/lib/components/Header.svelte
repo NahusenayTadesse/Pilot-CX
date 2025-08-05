@@ -27,6 +27,10 @@
       }
 
     let  Menuicon = $derived (menu ? X : AlignJustify);
+
+
+
+  
  </script>
 
     <nav class="hidden lg:flex justify-between px-[10%] 
@@ -60,7 +64,7 @@
         <Menuicon class="text-white" /> </button>
         {#if menu} 
          
-         <div class="flex flex-col w-[100%] absolute top-16 p-2 right-0 bg-[#2e86c7] z-100 gap-2 justify-center items-start pl-4">
+         <div class="flex flex-col w-[100%] absolute top-16 p-2 right-0  z-100 gap-2 justify-center items-start pl-4">
         {#each mobileSections as section}
             <a
                 href="/#{section.id}"

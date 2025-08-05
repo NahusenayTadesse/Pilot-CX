@@ -8,3 +8,5 @@ export let btnHallow = `bg-transparent text-light-blue-4 border-2 border-light-b
 export let btnWhiteFilled = `bg-white text-light-blue-4 border-2 border-transparent hover:bg-light-blue-4 hover:text-white hover:border-dark-1 ${btnAll}`;
 
 export let btnWhiteHallow = `bg-transparent text-white border-2 border-white hover:bg-white hover:text-light-blue-4 hover:border-transparent ${btnAll}`;
+
+

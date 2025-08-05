@@ -1,6 +1,9 @@
 
 <script>
     import { btnFilled } from "$lib/global.svelte";
+	import RiveAnimation from "$lib/RiveAnimation.svelte";
+
+    let riveInstance;
 
 
 
@@ -12,6 +15,7 @@
         <p class="text-dark-4">{description}</p>
     </div>
 {/snippet}
+
 
 <section class="flex flex-col items-center justify-center px-8">
 
@@ -27,7 +31,10 @@
 
  </div>
    
- <div class="grid lg:grid-cols-3 grid-cols-1 gap-8 mt-8 justify-center">
+ <div class="relative grid lg:grid-cols-3 grid-cols-1 gap-8 mt-8 justify-center">
+     <button class="absolute -top-48 -z-1 w-full" >
+<RiveAnimation src="/animations/paper_plan_for_service_section_loop.riv" {riveInstance}  />
+</button>
      <div class="bg-light-blue-4 flex flex-col items-start justify-start p-8 border border-light-2 rounded-[40px] lg:w-[400px] rotate-[3deg] -mr-2 gap-2">
           <img src="/icons/chat.svg" alt="Live Chat & Email Support" class="w-[40px] h-[40px]" />
             <h5 class="text-dark-1 font-Inter text-[27px] font-[500]">Live Chat & Email Support</h5>

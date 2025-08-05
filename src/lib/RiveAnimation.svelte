@@ -23,20 +23,30 @@
 		});
 	});
 
-  function pauseandPlay(which: boolean) {
+   let toggle = $state(true);
+
+  function pauseandPlay() {
     if (riveInstance) {
-      if (which) {
+      if (riveInstance.play()) {
         riveInstance.pause();
       } else {
         riveInstance.play();
       }
     }
+  } 
+
+  function pause() {
+     riveInstance.pause();
   }
+    function play() {
+     riveInstance.play();
+  }
+ 
 
 </script>
 
 <div >
-  <canvas bind:this={canvas} ></canvas>
+  <canvas bind:this={canvas} ></canvas> 
 
 </div>
 

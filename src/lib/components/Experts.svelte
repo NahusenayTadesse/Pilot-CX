@@ -1,15 +1,27 @@
  <script>
 	import RiveAnimation from '$lib/RiveAnimation.svelte';
+   
+
    let riveInstance;
 
 
+
+ 
+
  </script>
+
 
 {#snippet steps(picture, title, titlespan, description, orientation)}
 
-  <div class="flex {orientation ? 'lg:flex-row': 'lg:flex-row-reverse'} flex-wrap flex-col items-center justify-between lg:w-[80%] w-full gap-0">
-    <div class="lg:w-1/2 w-full {orientation ? '':'flex lg:items-end lg:justify-end items-center justify-center'}">
-        <img src={picture} alt={titlespan} class="lg:w-[434px] w-full h-full lg:h-[442px] object-cover" />
+  <div 
+  class="flex {orientation ? 'lg:flex-row': 'lg:flex-row-reverse'} 
+  flex-wrap flex-col items-center justify-between lg:w-[80%] w-full gap-0">
+    <div class="lg:w-1/2 w-full
+     {orientation ? '':'flex lg:items-end lg:justify-end items-center justify-center'}">
+        <img src={picture} alt={titlespan} class="lg:w-[434px] w-full h-full lg:h-[442px] object-cover"
+       />
+       
+    
     </div>
     <div class="lg:w-1/2 w-full flex flex-col gap-2 items-center lg:items-start">
        <h4 class="text-dark-6 font-semibold">{title} : <span class="text-light-blue-4">{titlespan}</span> </h4>
@@ -28,9 +40,12 @@
 {/snippet}
 
 <section class="relative flex flex-col items-center justify-center w-full gap-2 p-4">
-   <button class="absolute -top-72 z-1 w-full"  >
+   <button class="absolute -top-72 z-20 w-full" 
+
+     >
 <RiveAnimation src="/animations/paper_plane_for_exper_section_loop_.riv" {riveInstance}  />
 </button>
+    
     
     <div class="relative flex flex-col lg:h-[50vh] mt-8 pb-8">
       
@@ -40,7 +55,9 @@
      <div class="flex flex-col">
         <h2 class="text-dark-6">How it Works<span class="text-light-blue-4">?</span></h2>
      </div>
-
+   <div class="flex flex-col items-center justify-center w-full gap-2 p-4">
+        
+           
      {@render steps('/images/step1.svg', 'Step 1', 'Understand Your Needs', 
      "We start with a quick 30-minute call to learn about your product and support goals. Within 48 hours, you'll get a tailored proposal with clear pricing and a CX strategy built around your needs.", true)}
      {@render steps('/images/step3.svg', 'Step 2', 'Strategy Meets Structure', 
@@ -53,7 +70,7 @@
      {@render steps('/images/steps5.svg', 'Step 4', 'Test and Launch', 
      'We run a 24-hour dry run with real tickets so you can review quality. Once ready, we go live—providing full support while tracking performance and improving continuously.', false)}
      
-     
+     </div>
 
     
 
@@ -70,7 +87,9 @@
     <p class="text-dark-4">We combine deep SaaS knowledge with reliable, high-quality support so your customers get the help they need, and you get time back to focus on building.</p>
  </div>
 
- <div class=" w-full lg:w-[60%] grid lg:grid-cols-2 grid-cols-1 gap-[20px] justify-end">
+ <div class="relative w-full lg:w-[60%] grid lg:grid-cols-2 grid-cols-1 gap-[20px] justify-end">
+
+
     {@render choose('/images/choose1.svg', 'Fast and flexible onboarding')}
     {@render choose('/images/choose2.svg', 'Startup friendly pricing')}
     {@render choose('/images/choose3.svg', 'Startup friendly pricing')}
