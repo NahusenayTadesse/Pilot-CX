@@ -116,7 +116,7 @@ const logoPath = path.join(process.cwd(), 'static', 'Logo.svg');
             return { success: true };
         } catch (error) {
             console.error('Error inserting quote:', error);
-            return { success: false, error: 'Failed to submit quote.' };
+            return { success: false, error: 'Failed to submit quote.'};
         }
     }
 };

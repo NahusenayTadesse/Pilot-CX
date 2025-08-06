@@ -6,7 +6,10 @@
 
     let loading = $state(false);
 
-    let { form } = $props();
+
+    let {  form } = $props();
+
+
 
 
  let visible = $state(false);
@@ -18,6 +21,7 @@ function onsubmit(){
      
     $effect(() => {
     if (form?.success) {
+      loading = false;
       visible = true;
       const timer = setTimeout(() => {
         visible = false;
@@ -33,6 +37,7 @@ function onsubmit(){
    $effect(() => {
     if (form?.error) {
      errorVisible = true;
+     loading = false;
       const timer = setTimeout(() => {
         errorVisible = false;
       }, 5000);
@@ -63,7 +68,7 @@ function onsubmit(){
   <div class="bg-red-600 w-[400px] flex flex-row flex-wrap text-white fixed bottom-2 right-1 rounded-md p-4" transition:fly={{ x: 200, duration: 500 }}>
     
     <CircleAlert class="text-white justify-self-center w-8 h-8" />
-    <h6 class="text-white font-bold">Oops! Something went wrong. Please try again later.</h6>
+    <h6 class="text-white font-bold">Oops! {form?.error}.</h6>
   </div>
 {/if}
 

@@ -17,7 +17,7 @@ let currentPage = $state(page.url.pathname.charAt(1).toUpperCase() + page.url.pa
 
 
   
-  let sidebar = $state(true);
+  let sidebar = $state(false);
 
 
 </script>
@@ -36,17 +36,10 @@ let currentPage = $state(page.url.pathname.charAt(1).toUpperCase() + page.url.pa
   onmouseleave={() => sidebar = false}
   >
     <div class="p-4 text-2xl font-bold flex flex-row justify-between gap-8 mb-8 
-    pb-8 border-b-1 border-gray-500 dark:border-white mt-32">
-      {#if sidebar === true}
+    pb-8 mt-32">
        <a href="/dashboard">
-        <img src="/Logo.svg" alt="Pilot CX Logo" >
+        <img src="{sidebar ? '/Logo.svg': '/favicon.svg'}" alt="Pilot CX Logo" >
         </a>
-        
-      {:else} 
-       <a href="/dashboard">
-        <img src="/favicon.svg" alt="Pilot CX Logo" >
-        </a>
-      {/if}
        
         
     </div>

@@ -1,6 +1,6 @@
  <script>
 	import { btnWhiteFilled } from "$lib/global.svelte";
-	import { AtSign, MapPin } from "lucide-svelte";
+	import { AtSign, Clock4, MapPin, Phone } from "lucide-svelte";
 
      let sections = [
          { id: 'services', name: 'Services' },
@@ -35,12 +35,23 @@
     {/each}   
      
       </div>
-       <div>
+       <div class="flex flex-col gap-2">
             <h6 class="text-dark-1">Let's Talk Support</h6>
 
 
-            <p class="text-dark-1"><MapPin class="inline-block mr-1 " /> <a href="mailto:info@pilotcx.com">Addis Ababa, Ethiopia</a></p>
+            <p class="text-dark-1"><MapPin class="inline-block mr-1" /> <a href="mailto:info@pilotcx.com">Addis Ababa, Ethiopia</a></p>
             <p class="text-dark-1"><AtSign class="inline-block mr-1" /> <a href="mailto:info@pilotcx.com">info@pilotcx.com</a></p>
+            <p class="text-dark-1"><Phone class="inline-block mr-1 fill-white" /> <a href="tel:251xxxxxxx">+251 XXXXXXXX</a></p>
+            <p class="text-dark-1"><Clock4 class="inline-block mr-1 " /> 24/7</p>
+       </div>
+       <div class="flex flex-col gap-4">
+       <h6 class="text-dark-1">Subscribe</h6>
+       <form action="" class="flex flex-row flex-wrap gap-2">
+        <input type="email" name="email" id="email" class="border-1 border-white rounded-[16px] h-12 placeholder:text-white pl-4" placeholder="Subscribe">
+        <button class="{btnWhiteFilled} !h-12 !p-2 !px-4">Get News</button>
+        </form>
+
+
        </div>
 
   </div>
