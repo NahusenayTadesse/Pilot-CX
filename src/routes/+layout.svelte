@@ -15,6 +15,6 @@
 
 <Header />
 
-{@render children?.()}
+{@render children()}
 
 <Footer />

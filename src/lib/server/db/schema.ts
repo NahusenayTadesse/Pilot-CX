@@ -14,18 +14,26 @@ export const session = mysqlTable('session', {
 	expiresAt: datetime('expires_at').notNull()
 });
 	
-  
+export const contactForm = mysqlTable('contact_form', {
+	id: int('id').autoincrement().primaryKey(),
+	name: varchar('name', { length: 100 }).notNull(),
+	email: varchar('email', { length: 255 }).notNull(),
+	phone: varchar('phone', { length: 20 }),
+	service: varchar('service', { length: 100 }),
+	message: text('message')
+});
 
 
 export const quotes = mysqlTable('quotes', {
   id: int('id').primaryKey().autoincrement(),
-  name: varchar('name', { length: 255 }).notNull(),
+  firstName: varchar('first_name', { length: 255 }).notNull(),
+  lastName: varchar('last_name', { length: 255 }).notNull(),
   email: varchar('email', { length: 255 }).notNull(),
-  company: varchar('company', { length: 255 }),
-  phone: varchar('phone', { length: 20 }),
-  service: varchar('service', { length: 50 }).notNull(),
-  budget: decimal('budget', { precision: 12, scale: 2 }),
-  timeline: varchar('timeline', { length: 100 }),
+  phone: varchar('phone', { length: 20 }),  
+  numberOfTeams: int('number_of_teams'),
+  ticketsPerWeek: int('tickets_per_week'),
+  existingTeam: varchar('existing_team', {length: 50}),
+  startDate: timestamp('start_at'),
   details: text('details').notNull(),
   submittedAt: timestamp('submitted_at').defaultNow().notNull(),
 });

@@ -18,17 +18,24 @@ export const load: PageServerLoad = async ({ params }) => {
     const { id } = params;
 
     try {
-           const [singlequote] = await db.select().from(quotes).where(eq(quotes.id, id)).limit(1);        
+           const [singlequote] = await db.select().from(quotes).where(eq(quotes.id, id)).limit(1);
+           const allReplies = await db.select({
+             id: replies.id,
+             reply: replies.replyMessage,
+             date: replies.sentAt
+           }).from(replies).where(eq(replies.quoteId, id));        
            
            if (!singlequote) {
             throw error(404, 'Quote not found');
         }
 
-        return { singlequote };
+        return { singlequote, allReplies };
     } catch (err) {
         console.error('Error loading quote:', err);
         throw error(500, 'Failed to load quote');
     }
+
+
 };
 
 
@@ -50,7 +57,6 @@ export const actions: Actions = {
         };
       }
 
-      // Save reply to the database
       await db.insert(replies).values({
         quoteId,
         replyMessage
@@ -66,9 +72,12 @@ export const actions: Actions = {
         }
       });
 
+      const currentYear = new Date().getFullYear();
+
+
       const htmlContent = `
         <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.6; max-width: 600px; margin: 0 auto;">
-          <div style="text-align: center; margin-bottom: 20px;">
+          <div style="background-color: #2F86C7; height: 100px; text-align: center; margin-bottom: 20px; padding-top: 50px">
             <img src="cid:logo" alt="Pilot CX Logo" style="width: 150px; height: auto;" />
           </div>
           
@@ -76,7 +85,7 @@ export const actions: Actions = {
           
           <p>Hi ${name},</p>
           
-          <p>Thank you for your interest in <strong style="color: #27b4f2;">Pilot CX</strong>. Below is our response to your quote request:</p>
+          <p>Thank you for your interest in <a href="https://pilotcx.com" style="color: #27b4f2; text-decoration: none;">Pilot CX</a>. Below is our response to your quote request:</p>
           
           <div style="background-color: #f4f8fb; border-left: 4px solid #27b4f2; padding: 15px; margin: 20px 0;">
             ${replyMessage}
@@ -88,6 +97,8 @@ export const actions: Actions = {
           
           <br>
           <p>Best regards,<br><strong style="color: #27b4f2;">Pilot CX Team</strong></p>
+          	<p style="text-align: center;"> &copy; ${currentYear} <a href="https://pilotcx.com"style="color: #27b4f2; text-decoration: none;">
+Pilot CX </a> All Rights Reserved </p>
         </div>
       `;
 
@@ -112,7 +123,7 @@ export const actions: Actions = {
       };
 
     } catch (error) {
-      console.error('Error processing form submission:', error);
+      console.error('Error processing reply:', error);
 
       return {
         success: false,

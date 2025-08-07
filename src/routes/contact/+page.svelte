@@ -1,10 +1,13 @@
 <script>
 	import { enhance } from "$app/forms";
+	import { btnFilled } from "$lib/global.svelte";
 
 	import { LoaderCircle,CircleCheck,CircleAlert } from "lucide-svelte";
 	import { fly } from "svelte/transition";
 
     let loading = $state(false);
+
+    
 
 
     let {  form } = $props();
@@ -54,7 +57,14 @@ function onsubmit(){
 
  
 </script>
-
+{#snippet labels(labels, fors)}
+  <label for = {fors} class="block mb-2 text-[17px] text-gray-700">{labels}</label>
+{/snippet}
+{#snippet inputs(placeholder, name, type)}
+  <input {type} {name} {placeholder} 
+  class="w-full p-3 mb-5 border-1 border-gray-200 rounded-md
+   bg-gray-50 text-base focus:ring-light-blue-4 focus:ring-1 focus:outline-none focus:bg-light-blue-1">
+  {/snippet}
 
 {#if visible}
   <div class="bg-green-600 w-[400px] flex flex-row flex-wrap text-white fixed bottom-2 right-1 rounded-md p-4" transition:fly={{ x: 200, duration: 500 }}>
@@ -73,101 +83,100 @@ function onsubmit(){
 {/if}
 
 
+<div style="background-image: url('/images/quotebg.webp')" 
+class="bg-cover bg-no-repeat lg:h-[60vh] h-[35vh] flex flex-col justify-center items-center bg-[#2e86c7" >
+   <h1 class="text-center text-dark-1">Get a Quote</h1>
+</div>
+
 
 <form
-    class="max-w-lg mx-auto my-8 p-8 bg-white rounded-xl shadow-lg font-sans"
-    method="POST" use:enhance
+    class="lg:w-2/3 w-4/5 justify-self-center my-8 p-8rounded-xl font-sans grid lg:grid-cols-2 grid-cols-1 gap-4"
+    method="POST" id="quoteForm" 
+    use:enhance 
+    {onsubmit}
 >
-    <h2 class="mb-6 text-3xl font-bold text-gray-800 text-center">Get a Quote</h2>
 
         
   
+   <div>
+    {@render labels('First Name', 'firstName')}
+    {@render inputs('John', 'firstName', 'text')}
+    
+    </div>
+      <div>
+      {@render labels('Last Name', 'lastName')}
+      {@render inputs('Doe', 'lastName', 'text')}
 
-    <label for="name" class="block mb-2 font-medium text-gray-700">Full Name</label>
-    <input
-        id="name"
-        name="name"
-        type="text"
-        required
-        class="w-full p-3 mb-5 border border-gray-200 rounded-md bg-gray-50 text-base"
-    />
+    </div>
+   <div>
+          {@render labels('Work Email', 'email')}
 
-    <label for="email" class="block mb-2 font-medium text-gray-700">Email Address</label>
-    <input
-        id="email"
-        name="email"
-        type="email"
-        required
-        class="w-full p-3 mb-5 border border-gray-200 rounded-md bg-gray-50 text-base"
-    />
+        {@render inputs('john@example.com', 'email', 'email')}
 
-    <label for="company" class="block mb-2 font-medium text-gray-700">Company Name</label>
-    <input
-        id="company"
-        name="company"
-        type="text"
-        class="w-full p-3 mb-5 border border-gray-200 rounded-md bg-gray-50 text-base"
-    />
+    </div>
+    
+     <div>
+      {@render labels('Phone Number', 'phone')}
 
-    <label for="phone" class="block mb-2 font-medium text-gray-700">Phone Number</label>
-    <input
-        id="phone"
-        name="phone"
-        type="tel"
-        class="w-full p-3 mb-5 border border-gray-200 rounded-md bg-gray-50 text-base"
-    />
+      {@render inputs('+2510000000', 'phone', 'tel')}
 
-    <label for="service" class="block mb-2 font-medium text-gray-700">Service Needed</label>
-    <select
-        id="service"
-        name="service"
-        required
-        class="w-full p-3 mb-5 border border-gray-200 rounded-md bg-gray-50 text-base"
-    >
-        <option value="" disabled selected>Select a service</option>
-        <option value="customer-support">Customer Support Outsourcing</option>
-        <option value="tech-support">Technical Support Outsourcing</option>
-        <option value="back-office">Back Office Outsourcing</option>
-        <option value="sales">Sales Outsourcing</option>
-        <option value="other">Other</option>
-    </select>
+    </div>
+     
+    <div>
+      {@render labels('How many Team members do you need?', 'numberOfTeams')}
 
-    <label for="budget" class="block mb-2 font-medium text-gray-700">Estimated Budget (USD)</label>
-    <input
-        id="budget"
-        name="budget"
-        type="number"
-        min="0"
-        class="w-full p-3 mb-5 border border-gray-200 rounded-md bg-gray-50 text-base"
-    />
+      {@render inputs('0', 'numberOfTeams', 'number')}
+    </div>  
+     <div>
+      {@render labels('Do you have an existing support team?', 'existingTeam')}
+      <div class="flex flex-row gap-2">
+      <input type="radio" name="existingTeam" value="yes" class="form-radio text-light-blue-4 focus:ring-light-blue-4 scale-150">
+    <span>Yes</span>
+    <input type="radio" name="existingTeam" value="no" class="form-radio text-light-blue-4 focus:ring-light-blue-4 scale-150">
+    <span>No</span>
+    </div>
+    </div>  
 
-    <label for="timeline" class="block mb-2 font-medium text-gray-700">Project Timeline</label>
-    <input
-        id="timeline"
-        name="timeline"
-        type="text"
-        placeholder="e.g. 3 months, ASAP"
-        class="w-full p-3 mb-5 border border-gray-200 rounded-md bg-gray-50 text-base"
-    />
+      <div>
+      {@render labels('How many tickets per week do you want?', 'ticketsPerWeek')}
 
-    <label for="details" class="block mb-2 font-medium text-gray-700">Project Details</label>
+      {@render inputs('0', 'ticketsPerWeek', 'number')}
+    </div>  
+    
+      <div>
+      {@render labels('How soon are you looking to start?', 'startDate')}
+
+      {@render inputs('DD-MM-YYYY', 'startDate', 'date')}
+    </div>      
+
+    
+
+    
+  
+    <div>
+    {@render labels('Can you explain what you need?', 'details')}
+    
     <textarea
         id="details"
         name="details"
         rows="4"
         required
-        placeholder="Describe your requirements, goals, and expectations"
-        class="w-full p-3 mb-6 border border-gray-200 rounded-md bg-gray-50 text-base"
+        placeholder=" Explain what you need..."
+        class="w-full p-3 mb-5 border-1 border-gray-200 rounded-md
+   bg-gray-50 text-base focus:ring-light-blue-4 focus:ring-1 focus:outline-none focus:bg-light-blue-1"
     ></textarea>
+     </div>
+  
+</form>
 
-    <button
+  <button
         type="submit"
-        class="flex flex-row justify-center items-center gap-4 w-full p-3 bg-light-blue-4 text-white rounded-md text-lg font-semibold hover:bg-blue-700 transition"
-        {onsubmit}
+        form="quoteForm"
+        class="{btnFilled} justify-self-center flex flex-row justify-center items-center mb-8 gap-2"
+         
     >   {#if loading}
         <LoaderCircle class="animate-spin" />
         {/if}
 
-        Request Quote
-    </button>
-</form>
+        Get My Quote    </button>
+

@@ -66,7 +66,7 @@ let currentPage = $state(page.url.pathname.charAt(1).toUpperCase() + page.url.pa
   <!-- Main Content -->
 
 
-<main class="flex flex-col p-2 flex-1 w-full {sidebar ? 'ml-[250px]' : 'ml-[80px]'} pb-16 transition-all duration-300 ease-in-out">
+<main class="flex flex-col p-2 flex-1 {sidebar ? 'ml-[250px]' : 'ml-[80px]'} pb-16 transition-all duration-300 ease-in-out">
             {@render children()}
     </main>
 </div>
