@@ -64,11 +64,11 @@
         <Menuicon class="text-white" /> </button>
         {#if menu} 
          
-         <div class="flex flex-col w-[100%] absolute top-16 p-2 right-0  z-100 gap-2 justify-center items-start pl-4">
+         <div class="flex flex-col w-[100%] absolute top-16 p-2 right-0  z-100 gap-2 justify-center items-start pl-4 bg-[#2e86c7]">
         {#each mobileSections as section}
             <a
                 href="/#{section.id}"
-                class="text-dark-1 transition-transform duration-300 ease-in-out hover:scale-125"
+                class="text-dark-1 transition-transform duration-300 ease-in-out hover:scale-125 bg-[#2e86c7]"
              transition:slide|global {onclick}>
                 {section.name} 
             </a>

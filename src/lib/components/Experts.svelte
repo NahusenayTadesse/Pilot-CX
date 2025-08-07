@@ -40,10 +40,15 @@
 {/snippet}
 
 <section class="relative flex flex-col items-center justify-center w-full gap-2 p-4">
-   <button class="absolute -top-72 z-20 w-full" 
+   <button class="absolute -top-72 z-20 w-full lg:block hidden" 
 
      >
 <RiveAnimation src="/animations/paper_plane_for_exper_section_loop_.riv" {riveInstance}  />
+</button>
+<button class="absolute -top-2 z-20 lg:hidden block" 
+
+     >
+<RiveAnimation src="/animations/paper_expert_mobile.riv" {riveInstance}  />
 </button>
     
     
