@@ -6,6 +6,7 @@
 	import Packages from '$lib/components/Packages.svelte';
 	import Services from '$lib/components/Services.svelte';
     import FAQ from '$lib/components/FAQ.svelte';
+	import WhyChooseUs from '$lib/components/WhyChooseUs.svelte';
 </script>
 
 <div class="flex flex-col gap-16 pb-8">
@@ -20,6 +21,10 @@
 
 <section id="how-it-works" class="relative">
     <Experts />
+</section>
+
+<section id="why-choose-us">
+    <WhyChooseUs />
 </section>
 
 <section id="packages">

@@ -8,6 +8,8 @@
          { id: 'why-choose-us', name: 'Why Choose Us?' },
          { id: 'about', name: 'About Us' }
      ];
+
+     let currentYear =  new Date().getFullYear();
  </script>
 
 
@@ -50,10 +52,14 @@
         <input type="email" name="email" id="email" class="border-1 border-white rounded-[16px] h-12 placeholder:text-white pl-4" placeholder="Subscribe">
         <button class="{btnWhiteFilled} !h-12 !p-2 !px-4 !text-[17px]">Get News</button>
         </form>
-
+         
+        
 
        </div>
 
   </div>
+             <p class="text-dark-1 text-center !text-[16px] mt-24">&copy; {currentYear} Pilot CX. All Rights Reserved</p>
+
+
 </footer>
 
