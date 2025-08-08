@@ -97,7 +97,7 @@
      >
 <RiveAnimation src="/animations/paper_plane_for_exper_section_loop_.riv" {riveInstance}  />
 </button>
-<button class="absolute -top-2 z-10 lg:hidden block" 
+<button class="absolute -top-2 z-0 lg:hidden block" 
 
      >
 <RiveAnimation src="/animations/paper_expert_mobile.riv" {riveInstance}  />
@@ -115,7 +115,7 @@
    <div class="relative flex flex-col items-center justify-center w-full gap-2 p-4">
      
       
-          <canvas bind:this={canvas} class="w-full -z-1 h-full absolute" ></canvas> 
+          <canvas bind:this={canvas} class="w-full -z-1 h-full absolute lg:block hidden" ></canvas> 
 
            
      {@render steps('/images/step1.svg', 'Step 1', 'Understand Your Needs', 

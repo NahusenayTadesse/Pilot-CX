@@ -5,6 +5,10 @@
 	import { LoaderCircle,CircleCheck,CircleAlert } from "lucide-svelte";
 	import { fly } from "svelte/transition";
         import { goto } from '$app/navigation';
+        import { onMount } from 'svelte';
+  import intlTelInput from 'intl-tel-input';
+   import 'intl-tel-input/build/css/intlTelInput.css';
+
 
 
     let loading = $state(false);
@@ -20,9 +24,7 @@
  let visible = $state(false);
  let errorVisible = $state(false);
 
-function onsubmit(){
-        loading = true;
-     }
+
      
     $effect(() => {
     if (form?.success) {
@@ -59,7 +61,46 @@ function onsubmit(){
 
   });
 
+  let inputElement = $state();
+  let iti = $state();
+  let countryCode = $state();
 
+
+  onMount(() => {
+    iti = intlTelInput(inputElement, {
+      initialCountry: 'auto',
+      separateDialCode: true,
+      geoIpLookup: function (callback) {
+        fetch('https://ipapi.co/json')
+          .then((res) => res.json())
+          .then((data) => callback(data.country_code))
+          .catch(() => callback('us'));
+      },
+      utilsScript:
+        'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js',
+        
+      
+  
+    });
+    countryCode = iti.getSelectedCountryData().dialCode;
+    
+    // 2. Listen for the 'countrychange' event
+      inputElement.addEventListener('countrychange', () => {
+      countryCode = iti.getSelectedCountryData().dialCode;
+      console.log(`Country changed, new dial code: ${countryCode}`) });
+    
+    return () => {
+      iti.destroy();
+    };
+  });
+
+  function onsubmit(){
+        loading = true;
+     
+      // You can now use the 'fullNumber' variable for your form dat
+     }  
+
+ 
 
  
 </script>
@@ -123,11 +164,14 @@ class="bg-cover bg-no-repeat lg:h-[60vh] h-[35vh] flex flex-col justify-center i
     
      <div>
       {@render labels('Phone Number', 'phone')}
-
-      {@render inputs('+2510000000', 'phone', 'tel')}
-
+  <input 
+    type="hidden" 
+    name="country_code" 
+    bind:value={countryCode} 
+  />
+      <input type="tel" bind:this={inputElement} class="phone-input w-[100%] p-3 mb-5 border-1 border-gray-200 rounded-md
+   bg-gray-50 text-base focus:ring-light-blue-4 focus:ring-1 focus:outline-none focus:bg-light-blue-1"  placeholder="00000000" name="phone"/>
     </div>
-     
     <div>
       {@render labels('How many Team members do you need?', 'numberOfTeams')}
 
@@ -186,3 +230,47 @@ class="bg-cover bg-no-repeat lg:h-[60vh] h-[35vh] flex flex-col justify-center i
 
         Get My Quote    </button>
 
+<style>
+ :global(.iti) {
+    width: 100% !important;
+  }
+
+:global(.iti__search-input) {
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+    border: 1px solid var(--color-dark-6);
+    font-size: 0.875rem;
+    width: calc(100% - 1rem);
+    margin: 0.5rem;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
+  :global(.iti__search-input:focus) {
+    outline: none;
+    border-color: var(--color-light-blue-4); /* Tailwind's light-blue-400 */
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.5); /* Tailwind ring-light-blue-4 */
+  }
+
+  :global(.iti__country-list) {
+    max-height: 250px;
+    border-radius: 0.375rem;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    font-size: 0.875rem;
+  }
+
+  :global(.iti__country) {
+    padding: 0.5rem 1rem;
+  }
+
+  :global(.iti__country:hover),
+  :global(.iti__country.iti__highlight) {
+    background-color: #f0f9ff;
+  }
+
+  :global(.iti__flag) {
+    transform: scale(1.25);
+    transform-origin: left center;
+  }
+  
+</style>

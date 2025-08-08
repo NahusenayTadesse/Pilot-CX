@@ -123,12 +123,15 @@ export const actions: Actions = {
 			const firstName = formData.get('firstName') as string;
 			const lastName = formData.get('lastName') as string;
 			const email = formData.get('email') as string;
-			const phone = formData.get('phone') as string;
+			const country_code = formData.get('country_code') as string;
+         
+			const phoneNumber = formData.get('phone') as string;
 			const numberOfTeams = formData.get('numberOfTeams') as string;
 			const ticketsPerWeek = formData.get('ticketsPerWeek') as string;
 			const existingTeam = formData.get('existingTeam') as string;
 			const startDate = formData.get('startDate') as string;
 			const details = formData.get('details') as string;
+			const phone = country_code + phoneNumber
 
 			// Insert into DB first
 			await db.insert(quotes).values({

@@ -1,5 +1,5 @@
 <script>
-	import { btnWhiteFilled, btnWhiteHallow } from "$lib/global.svelte";
+	import { btnFilled, btnWhiteFilled, btnWhiteHallow } from "$lib/global.svelte";
     import RiveAnimation from "$lib/RiveAnimation.svelte";
     let riveInstance;
 
@@ -14,10 +14,10 @@
             While you focus on building product and hitting growth milestones, PilotCX keeps your support smooth, responsive, and always on course.
         </p>
         <div class="flex flex-row justify-center gap-[26px]">
-            <a href="#about" class= {btnWhiteFilled}>
+            <a href="/contact" class= {btnWhiteFilled}>
                 Get a Quote
             </a>
-            <a href="#about" class={btnWhiteHallow}>
+            <a href="#about" class="lg:{btnWhiteHallow} {btnFilled}">
                 Learn More
             </a>
         </div>
@@ -25,7 +25,7 @@
 
     
 </section>
-<button class="absolute top-0 left-0 z-1 w-[110%] h-[100%] hidden lg:block"  >
+<button class="absolute top-0 left-0 z-0 w-full h-full hidden lg:block"  >
 
 
 

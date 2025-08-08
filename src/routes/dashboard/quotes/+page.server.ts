@@ -1,5 +1,6 @@
 import type { PageServerLoad } from "./$types";
 import {db} from '$lib/server/db';
+import { asc } from "drizzle-orm";
 
 import {quotes} from '$lib/server/db/schema';
 
@@ -15,7 +16,7 @@ export const load: PageServerLoad = async () => {
          submittedAt: quotes.submittedAt
 
 
-    }).from(quotes).orderBy(quotes.submittedAt);
+    }).from(quotes).orderBy(asc(quotes.submittedAt));
 
      
     

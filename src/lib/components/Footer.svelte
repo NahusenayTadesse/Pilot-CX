@@ -48,7 +48,7 @@
        <h6 class="text-dark-1">Subscribe</h6>
        <form action="" class="flex flex-row flex-wrap gap-2">
         <input type="email" name="email" id="email" class="border-1 border-white rounded-[16px] h-12 placeholder:text-white pl-4" placeholder="Subscribe">
-        <button class="{btnWhiteFilled} !h-12 !p-2 !px-4">Get News</button>
+        <button class="{btnWhiteFilled} !h-12 !p-2 !px-4 !text-[17px]">Get News</button>
         </form>
 
 

@@ -12,7 +12,7 @@
 			autoplay: true,
       loop: true,
 			layout: new Layout({
-				fit: Fit.Contain,
+				fit: Fit?.FitWidth,
 				alignment: Alignment.Center,
 			}),
 			canvas,
