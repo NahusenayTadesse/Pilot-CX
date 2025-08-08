@@ -111,7 +111,7 @@ function onsubmit(){
 {/if}
 
 
-
+{#if data.allReplies.length === 0}
 <form
     class="lg:w-1/2 w-full items-center justify-center flex flex-col gap-4 mx-auto my-8 p-8 bg-white rounded-xl shadow-lg font-sans"
     method="POST" use:enhance 
@@ -145,7 +145,7 @@ function onsubmit(){
         Reply
     </button>
 </form>
-
+{/if}
 
 
 

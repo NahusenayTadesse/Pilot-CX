@@ -96,9 +96,11 @@
 
   function onsubmit(){
         loading = true;
+      // e.g. +251912345678
+    }
      
       // You can now use the 'fullNumber' variable for your form dat
-     }  
+     
 
  
 

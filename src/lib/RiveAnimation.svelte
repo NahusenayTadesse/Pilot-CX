@@ -2,7 +2,7 @@
   import { browser } from '$app/environment';
  import {onDestroy, onMount} from 'svelte';
 
-  let { src, riveInstance } = $props();
+  let { src, riveInstance, animations=[] } = $props();
   let canvas: HTMLCanvasElement | null = $state();
 
 	onMount(async () => {
@@ -10,6 +10,8 @@
 		riveInstance = new Rive({
 			src,
 			autoplay: true,
+			animations: Array.isArray(animations) ? animations : [animations],
+
       loop: true,
 			layout: new Layout({
 				fit: Fit?.FitWidth,

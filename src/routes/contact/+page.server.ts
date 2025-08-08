@@ -131,7 +131,7 @@ export const actions: Actions = {
 			const existingTeam = formData.get('existingTeam') as string;
 			const startDate = formData.get('startDate') as string;
 			const details = formData.get('details') as string;
-			const phone = country_code + phoneNumber
+			const phone = `+${country_code}  ${phoneNumber}`	
 
 			// Insert into DB first
 			await db.insert(quotes).values({
