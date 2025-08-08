@@ -158,8 +158,11 @@ export const actions: Actions = {
 				console.error('Error sending emails:', err);
 			});
 
-			// Immediately respond success to user
-			return { success: true };
+			// Immediately respond success to user 
+			
+			return { success: true,
+				    
+			};
 		} catch (error) {
 			console.error('Error inserting quote:', error);
 			return { success: false, error: 'Failed to submit quote.' };

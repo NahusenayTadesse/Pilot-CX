@@ -4,6 +4,8 @@
 
 	import { LoaderCircle,CircleCheck,CircleAlert } from "lucide-svelte";
 	import { fly } from "svelte/transition";
+        import { goto } from '$app/navigation';
+
 
     let loading = $state(false);
 
@@ -28,7 +30,11 @@ function onsubmit(){
       visible = true;
       const timer = setTimeout(() => {
         visible = false;
-      }, 5000);
+         goto('/');
+      }, 2000);
+       
+
+
 
       return () => {
         clearTimeout(timer);

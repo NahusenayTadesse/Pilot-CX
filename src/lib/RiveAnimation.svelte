@@ -1,6 +1,6 @@
 <script lang="ts">
   import { browser } from '$app/environment';
- import {onMount} from 'svelte';
+ import {onDestroy, onMount} from 'svelte';
 
   let { src, riveInstance } = $props();
   let canvas: HTMLCanvasElement | null = $state();
@@ -22,26 +22,16 @@
       
 		});
 	});
+	onDestroy(() => {
+		// Cleanup Rive instance to free memory
+		if (riveInstance) {
+			riveInstance.cleanup();
+			riveInstance = null;
+		}
+	});
 
-   let toggle = $state(true);
 
-  function pauseandPlay() {
-    if (riveInstance) {
-      if (riveInstance.play()) {
-        riveInstance.pause();
-      } else {
-        riveInstance.play();
-      }
-    }
-  } 
 
-  function pause() {
-     riveInstance.pause();
-  }
-    function play() {
-     riveInstance.play();
-  }
- 
 
 </script>
 

@@ -1,8 +1,60 @@
- <script>
+ <script lang='ts'>
 	import RiveAnimation from '$lib/RiveAnimation.svelte';
    
 
-   let riveInstance;
+   let river: any = $state(null);
+
+    import { browser } from '$app/environment';
+  import { onMount } from 'svelte';
+
+  let canvas: HTMLCanvasElement | null = $state(null);
+  let numberInput: any                 = $state(null);
+  let riveInstance: any                = $state(null);
+
+  onMount(async () => {
+    if (!browser) return;
+
+    const { Rive, Layout, Fit, Alignment } = await import('@rive-app/canvas');
+
+    river = new Rive({
+      src: '/animations/paper_plane_how_it_works_2.riv',
+      canvas: canvas!,
+      autoplay: true,
+      stateMachines: ['State Machine 1'],
+      layout: new Layout({
+        fit: Fit.Cover,
+        alignment: Alignment.Center,
+      }),
+      onLoad: () => {
+        river.resizeDrawingSurfaceToCanvas();
+
+        const sm = river.stateMachineInputs('State Machine 1');
+        console.log('All inputs:', sm);
+        sm.forEach((i: any) => console.log('input name =', i.name, 'type =', i.type));
+
+         numberInput = sm.find((i: any) => i.name === 'Scroll');
+
+        if (!numberInput) console.error('"Numbers" input not found');
+      },
+    });
+
+    // scroll handler
+    function updateScroll() {
+      const pct = window.scrollY /
+                  (document.body.scrollHeight - window.innerHeight);
+        console.log('Pct: ', pct)
+      if (numberInput) numberInput.value = ((pct-0.25)/(0.52-0.25))*100;
+    }
+
+    window.addEventListener('scroll', updateScroll, { passive: true });
+    updateScroll(); // initial value
+
+    // cleanup returned from onMount, not from onLoad
+    return () => {
+      window.removeEventListener('scroll', updateScroll);
+      river?.cleanup();
+    };
+  });
 
 
 
@@ -40,12 +92,12 @@
 {/snippet}
 
 <section class="relative flex flex-col items-center justify-center w-full gap-2 p-4">
-   <button class="absolute -top-72 z-20 w-full lg:block hidden" 
+   <button class="absolute -top-72 z-0 w-full lg:block hidden" 
 
      >
 <RiveAnimation src="/animations/paper_plane_for_exper_section_loop_.riv" {riveInstance}  />
 </button>
-<button class="absolute -top-2 z-20 lg:hidden block" 
+<button class="absolute -top-2 z-10 lg:hidden block" 
 
      >
 <RiveAnimation src="/animations/paper_expert_mobile.riv" {riveInstance}  />
@@ -60,8 +112,11 @@
      <div class="flex flex-col">
         <h2 class="text-dark-6">How it Works<span class="text-light-blue-4">?</span></h2>
      </div>
-   <div class="flex flex-col items-center justify-center w-full gap-2 p-4">
-        
+   <div class="relative flex flex-col items-center justify-center w-full gap-2 p-4">
+     
+      
+          <canvas bind:this={canvas} class="w-full -z-1 h-full absolute" ></canvas> 
+
            
      {@render steps('/images/step1.svg', 'Step 1', 'Understand Your Needs', 
      "We start with a quick 30-minute call to learn about your product and support goals. Within 48 hours, you'll get a tailored proposal with clear pricing and a CX strategy built around your needs.", true)}

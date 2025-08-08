@@ -5,7 +5,7 @@
 
 </script>
 
-<section class="lg:h-[100vh] h-[80vh] flex lg:pt-[100px] pt-[40px] justify-center items-start min-h-[70vh]text-white text-center bg-[#2e86c7]">
+<section class="lg:h-[100vh] h-[80vh] flex lg:pt-[0px] pt-[40px] justify-center items-center min-h-[70vh]text-white text-center bg-[#2e86c7]">
     <div class="mx-auto z-2">
         <h1 class="mb-4 font-bold font-sans text-dark-1">
             With PilotCX You Navigate <br class="hidden lg:flex" /> Customer Experience with Ease

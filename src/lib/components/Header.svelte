@@ -1,6 +1,6 @@
 
  <script>
-	import { btnWhiteFilled } from "$lib/global.svelte";
+	import { btnFilled, btnWhiteFilled } from "$lib/global.svelte";
 	import { AlignJustify, X } from "lucide-svelte";
 	import { slide } from "svelte/transition";
 
@@ -27,6 +27,9 @@
       }
 
     let  Menuicon = $derived (menu ? X : AlignJustify);
+  let {scrolled=false} = $props();
+
+  
 
 
 
@@ -34,21 +37,22 @@
  </script>
 
     <nav class="hidden lg:flex justify-between px-[10%] 
-    items-center space-x-4 bg-[#2e86c7] py-8 sticky top-0 z-50 ">
-        <a href="/">
-        <img src="/Logo.svg" alt="Pilot CX Logo" class="w-[190px] h-[46px]" />
+    items-center space-x-4  py-8 fixed top-0 z-50 w-screen bg-[#2e86c7]  {scrolled ? 'backdrop-blur-lg bg-white/30': 'bg-transparent'} transition-all duration-300 ease-in-out">
+        <a href="/" title="Home">
+        <img src="{scrolled ? '/LogoforWhite.svg' : '/Logo.svg'}" alt="Pilot CX Logo" class="w-[190px] h-[46px] hover:scale-125 transition-all duration-300 ease-in-out" />
+        
             </a>
         <div class="flex flex-row gap-5 justify-center items-center">
         {#each sections as section}
             <a
                 href="/#{section.id}"
-                class="text-dark-1 transition-transform duration-300 ease-in-out hover:scale-125"
+                class="{scrolled ? 'text-dark-6': 'text-dark-1'} transition-transform duration-300 ease-in-out hover:scale-125 text-lg"
             >
                 {section.name}
             </a>
         {/each}   
     </div>
-        <a href="/contact" class="{btnWhiteFilled} !py-[12px] !text-[17px]">Get a Quote</a>
+        <a href="/contact" class="{scrolled ? btnFilled : btnWhiteFilled} !py-[12px] !text-[17px]">Get a Quote</a>
     </nav>
 
 
