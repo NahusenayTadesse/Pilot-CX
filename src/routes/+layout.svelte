@@ -19,7 +19,7 @@
     return () => window.removeEventListener('scroll', onScroll);
   });
   
-
+ import {page} from '$app/state'
   
 </script>
 
@@ -28,6 +28,7 @@
 	<title> PilotCX - Customer Experience Simplified</title>
 </svelte:head>
 
+{#if !page.url.pathname.includes('/dashboard')}
 
 <Header {scrolled} />
 
@@ -36,5 +37,11 @@
 
 
 <Footer />
+
+{:else}
+{@render children()}
+{/if}
+
+
 
 

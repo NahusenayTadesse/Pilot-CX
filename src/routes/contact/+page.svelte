@@ -1,6 +1,6 @@
 <script>
 	import { enhance } from "$app/forms";
-	import { btnFilled } from "$lib/global.svelte";
+	import { btnFilled, disabled } from "$lib/global.svelte";
 
 	import { LoaderCircle,CircleCheck,CircleAlert } from "lucide-svelte";
 	import { fly } from "svelte/transition";
@@ -61,6 +61,7 @@
 
   });
 
+
   let inputElement = $state();
   let iti = $state();
   let countryCode = $state();
@@ -98,9 +99,63 @@
         loading = true;
       // e.g. +251912345678
     }
-     
+  
+  let phoneNumber = $state('');
+ 
+  function isValidLocalNumber(phoneNumber) {
+  if (!phoneNumber) {
+    return '';
+  }
+  
+  if (!/^\d+$/.test(phoneNumber)) {
+    return 'Phone number must contain only digits.';
+  }
+
+  if (phoneNumber.length < 6) {
+    return 'Phone number is too short.';
+  }
+
+  if (phoneNumber.length > 15) {
+    return 'Phone number is too long.';
+  }
+
+  // If all checks pass, return empty string (no error)
+  return '';
+}
+
+  function checkEmailDomain(email) {
+  const commonDomains = [
+    'gmail.com', 'yahoo.com', 'outlook.com', 'hotmail.com', 'aol.com',
+    'icloud.com', 'protonmail.com', 'zoho.com', 'mail.com', 'yandex.com'
+  ];
+
+  if (!email ) {
+    return "";
+  }
+  if(!email.includes('@')) {
+    return "Please enter a valid email address"
+  }
+
+  const domain = email.trim().split('@')[1].toLowerCase();
+
+  if (commonDomains.includes(domain)) {
+    return `Emails from ${domain} are not allowed. Please use your custom domain email.`;
+  }
+
+  return '';
+}
       // You can now use the 'fullNumber' variable for your form dat
-     
+
+
+
+ let email = $state('');
+
+ function isValidContact(phoneNumber, email) {
+  const phoneValidation = isValidLocalNumber(phoneNumber);
+  const emailValidation = checkEmailDomain(email);
+  
+  return phoneValidation === '' && emailValidation === '';
+}
 
  
 
@@ -110,8 +165,8 @@
   <label for = {fors} class="block mb-2 text-[17px] text-gray-700">{labels}</label>
 {/snippet}
 {#snippet inputs(placeholder, name, type)}
-  <input {type} {name} {placeholder} 
-  class="w-full p-3 mb-5 border-1 border-gray-200 rounded-md
+  <input {type} {name} {placeholder} required
+  class="w-full p-3 mb-5 border-1 border-gray-200 rounded-md 
    bg-gray-50 text-base focus:ring-light-blue-4 focus:ring-1 focus:outline-none focus:bg-light-blue-1">
   {/snippet}
 
@@ -141,7 +196,7 @@ class="bg-cover bg-no-repeat lg:h-[60vh] h-[35vh] flex flex-col justify-center i
 <form
     class="lg:w-2/3 w-4/5 justify-self-center my-8 p-8rounded-xl font-sans grid lg:grid-cols-2 grid-cols-1 gap-4"
     method="POST" id="quoteForm" 
-    use:enhance 
+    use:enhance
     {onsubmit}
 >
 
@@ -159,8 +214,20 @@ class="bg-cover bg-no-repeat lg:h-[60vh] h-[35vh] flex flex-col justify-center i
     </div>
    <div>
           {@render labels('Work Email', 'email')}
+        <input type='email'  name="email" placeholder='john@example.com' 
+  class="w-full p-3 mb-5 border-1 border-gray-200 rounded-md
+   bg-gray-50 text-base focus:ring-light-blue-4 focus:ring-1 focus:outline-none focus:bg-light-blue-1" 
+   bind:value={email} 
+   required
+   onchange={()=>checkEmailDomain(email)}
+   >
+          {#if checkEmailDomain(email)}
 
-        {@render inputs('john@example.com', 'email', 'email')}
+        <p class="text-red-500">{checkEmailDomain(email)}</p> 
+        {/if}
+
+    
+       
 
     </div>
     
@@ -169,11 +236,23 @@ class="bg-cover bg-no-repeat lg:h-[60vh] h-[35vh] flex flex-col justify-center i
   <input 
     type="hidden" 
     name="country_code" 
+    required
     bind:value={countryCode} 
   />
-      <input type="tel" bind:this={inputElement} class="phone-input w-[100%] p-3 mb-5 border-1 border-gray-200 rounded-md
+      <input type="tel"
+       bind:this={inputElement} 
+       bind:value={phoneNumber} 
+       onchange = {()=>isValidLocalNumber(phoneNumber)}
+       class="phone-input w-[100%] p-3 mb-5 border-1 border-gray-200 rounded-md
    bg-gray-50 text-base focus:ring-light-blue-4 focus:ring-1 focus:outline-none focus:bg-light-blue-1"  placeholder="00000000" name="phone"/>
-    </div>
+   
+
+   {#if isValidLocalNumber()}
+
+        <p class="text-red-500">{isValidLocalNumber(phoneNumber)}</p> 
+        {/if}
+  </div>
+     
     <div>
       {@render labels('How many Team members do you need?', 'numberOfTeams')}
 
@@ -182,9 +261,9 @@ class="bg-cover bg-no-repeat lg:h-[60vh] h-[35vh] flex flex-col justify-center i
      <div>
       {@render labels('Do you have an existing support team?', 'existingTeam')}
       <div class="flex flex-row gap-2">
-      <input type="radio" name="existingTeam" value="yes" class="form-radio text-light-blue-4 focus:ring-light-blue-4 scale-150">
+      <input type="radio" required name="existingTeam" value="yes" class="form-radio text-light-blue-4 focus:ring-light-blue-4 scale-150">
     <span>Yes</span>
-    <input type="radio" name="existingTeam" value="no" class="form-radio text-light-blue-4 focus:ring-light-blue-4 scale-150">
+    <input type="radio" required name="existingTeam" value="no" class="form-radio text-light-blue-4 focus:ring-light-blue-4 scale-150">
     <span>No</span>
     </div>
     </div>  
@@ -224,8 +303,9 @@ class="bg-cover bg-no-repeat lg:h-[60vh] h-[35vh] flex flex-col justify-center i
   <button
         type="submit"
         form="quoteForm"
-        class="{btnFilled} justify-self-center flex flex-row justify-center items-center mb-8 gap-2"
-         
+        disabled={!isValidContact(phoneNumber, email)}
+        class="{isValidContact(phoneNumber, email) ? btnFilled: disabled} justify-self-center flex flex-row justify-center items-center mb-8 gap-2"
+         title = {isValidContact(phoneNumber, email) ? 'Get My Qoute': 'Please make sure every field is correct'}
     >   {#if loading}
         <LoaderCircle class="animate-spin" />
         {/if}

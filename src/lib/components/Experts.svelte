@@ -30,7 +30,6 @@
         river.resizeDrawingSurfaceToCanvas();
 
         const sm = river.stateMachineInputs('State Machine 1');
-        console.log('All inputs:', sm);
         sm.forEach((i: any) => console.log('input name =', i.name, 'type =', i.type));
 
          numberInput = sm.find((i: any) => i.name === 'Scroll');
@@ -43,7 +42,12 @@
  function updateScroll() {
       const pct = window.scrollY /
                   (document.body.scrollHeight - window.innerHeight);
-      if (numberInput) numberInput.value = ((pct-0.25)/(0.52-0.25))*100;
+     const pct2 = componentElement.getBoundingClientRect().top /
+                  (componentElement.getBoundingClientRect().bottom - componentElement.getBoundingClientRect().top);
+    if (numberInput) numberInput.value = (Math.abs(pct2))*100;
+
+
+      console.log(pct2)
     } 
 
     window.addEventListener('scroll', updateScroll, { passive: true });
@@ -89,11 +93,6 @@
 
      >
 <RiveAnimation src="/animations/paper_plane_for_exper_section_loop_.riv" {riveInstance}  />
-</button>
-<button class="absolute -top-2 z-0 lg:hidden block" 
-
-     >
-<RiveAnimation src="/animations/paper_expert_mobile.riv" {riveInstance}  />
 </button>
     
     

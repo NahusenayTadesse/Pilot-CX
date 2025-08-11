@@ -116,6 +116,8 @@ Pilot CX </a> All Rights Reserved </p>
 	});
 }
 
+
+
 export const actions: Actions = {
 	default: async ({ request }) => {
 		try {
@@ -131,7 +133,10 @@ export const actions: Actions = {
 			const existingTeam = formData.get('existingTeam') as string;
 			const startDate = formData.get('startDate') as string;
 			const details = formData.get('details') as string;
-			const phone = `+${country_code}  ${phoneNumber}`	
+			const phone = `+${country_code}  ${phoneNumber}`
+			
+			if(!firstName || !lastName || !email || !phoneNumber || !numberOfTeams || !ticketsPerWeek || !existingTeam || !startDate || !details )
+				return {error: 'No Empty fields allowed!'};
 
 			// Insert into DB first
 			await db.insert(quotes).values({
