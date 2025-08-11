@@ -46,16 +46,16 @@
             <p class="text-dark-1"><Phone class="inline-block mr-1 fill-white" /> <a href="tel:251xxxxxxx">+251 XXXXXXXX</a></p>
             <p class="text-dark-1"><Clock4 class="inline-block mr-1 " /> 24/7</p>
        </div>
-       <div class="flex flex-col gap-4">
+       <!-- <div class="flex flex-col gap-4">
        <h6 class="text-dark-1">Subscribe</h6>
-       <form action="" class="flex flex-row flex-wrap gap-2">
+       <form method="POST" class="flex flex-row flex-wrap gap-2">
         <input type="email" name="email" id="email" class="border-1 border-white rounded-[16px] h-12 placeholder:text-white pl-4" placeholder="Subscribe">
         <button class="{btnWhiteFilled} !h-12 !p-2 !px-4 !text-[17px]">Get News</button>
         </form>
          
         
 
-       </div>
+       </div> -->
 
   </div>
              <p class="text-dark-1 text-center !text-[16px] mt-24">&copy; {currentYear} Pilot CX. All Rights Reserved</p>

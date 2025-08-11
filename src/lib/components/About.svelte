@@ -1,6 +1,5 @@
 <script>
 	import RiveAnimation from "$lib/RiveAnimation.svelte";
-	import { de } from "intl-tel-input/i18n";
   let riveInstance;
 
 </script> 

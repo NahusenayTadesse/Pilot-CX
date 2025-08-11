@@ -1,5 +1,8 @@
 import { redirect } from "@sveltejs/kit";
 import type { PageServerLoad } from "./$types";
+import { eq, sql } from "drizzle-orm";
+import { db } from "$lib/server/db";
+import { quotes, replies } from "$lib/server/db/schema";
 
 
 export const load: PageServerLoad = async (event) => {
@@ -7,5 +10,22 @@ export const load: PageServerLoad = async (event) => {
         return redirect(302, '/login');
     }
     
-    return {};
+    
+     const replyCount = await db
+    .select({
+id: replies.id    })
+    .from(replies);
+
+  // Count unreplied quotes
+  const unrepliedCount = await db
+    .select({
+        id: quotes.id
+     })
+    .from(quotes);
+
+
+  return {
+    replyCount,
+    unrepliedCount,
+  };
 };

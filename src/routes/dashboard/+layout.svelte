@@ -1,6 +1,8 @@
 <script lang="ts">
     let { data, children } = $props();
     import {page} from '$app/state';
+      import { MessageSquare, Inbox } from 'lucide-svelte';
+
 
     import { LayoutDashboard, Quote, MessageSquareQuote } from '@lucide/svelte';
 
@@ -16,7 +18,7 @@ let currentPage = $state(page.url.pathname.charAt(1).toUpperCase() + page.url.pa
 
 
 
-  
+
   let sidebar = $state(false);
 
 
@@ -36,8 +38,8 @@ let currentPage = $state(page.url.pathname.charAt(1).toUpperCase() + page.url.pa
   onmouseleave={() => sidebar = false}
   >
     <div class="p-4 text-2xl font-bold flex flex-row justify-between gap-8 mb-8 
-    pb-8 mt-32">
-       <a href="/dashboard">
+    pb-8">
+       <a href="/" title="Home">
         <img src="{sidebar ? '/Logo.svg': '/favicon.svg'}" alt="Pilot CX Logo" >
         </a>
        
@@ -63,11 +65,26 @@ let currentPage = $state(page.url.pathname.charAt(1).toUpperCase() + page.url.pa
    </nav>
   </aside>
 
-  <!-- Main Content -->
+
 
 
 <main class="flex flex-col p-2 flex-1 {sidebar ? 'ml-[250px]' : 'ml-[80px]'} pb-16 transition-all duration-300 ease-in-out">
-            {@render children()}
+  <header class="transition-transform duration-300 shadow-md rounded-lg p-4 flex flex-row gap-2 justify-center items-center">
+
+    <MessageSquare class="w-6 h-6 text-light-blue-5" />
+  
+      <p class="text-sm text-gray-500">Replies</p>
+      <p class="text-2xl font-semibold text-gray-900">{data?.replyCount.length}</p>
+  
+    <Inbox class="w-6 h-6 text-red-500" />
+    
+      <p class="text-sm text-gray-500">Unreplied Quotes</p>
+      <p class="text-2xl font-semibold text-gray-900">{data?.unrepliedCount.length - data?.replyCount.length}</p>
+   
+  
+  </header>
+       <div class="p-8">
+            {@render children()}</div>
     </main>
 </div>
 

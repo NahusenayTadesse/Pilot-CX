@@ -1,4 +1,4 @@
-import { mysqlTable,  int, varchar, datetime, text, timestamp, decimal } from 'drizzle-orm/mysql-core';
+import { mysqlTable,  int, varchar, datetime, text, timestamp, decimal, serial } from 'drizzle-orm/mysql-core';
 
 
 export const user = mysqlTable('user', {
@@ -22,6 +22,12 @@ export const contactForm = mysqlTable('contact_form', {
 	service: varchar('service', { length: 100 }),
 	message: text('message')
 });
+
+export const footerForm = mysqlTable('footer_form', {
+	id: int('id').autoincrement().primaryKey(),
+  email: varchar('email', { length: 255 }).notNull(),
+  submittedAt: timestamp('submitted_at').defaultNow().notNull()
+})
 
 
 export const quotes = mysqlTable('quotes', {

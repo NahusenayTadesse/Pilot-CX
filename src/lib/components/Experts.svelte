@@ -44,10 +44,9 @@
                   (document.body.scrollHeight - window.innerHeight);
      const pct2 = componentElement.getBoundingClientRect().top /
                   (componentElement.getBoundingClientRect().bottom - componentElement.getBoundingClientRect().top);
-    if (numberInput) numberInput.value = (Math.abs(pct2))*100;
+    if (numberInput) numberInput.value = (Math.abs(pct2))*110;
 
 
-      console.log(pct2)
     } 
 
     window.addEventListener('scroll', updateScroll, { passive: true });

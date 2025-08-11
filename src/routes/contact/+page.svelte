@@ -5,9 +5,8 @@
 	import { LoaderCircle,CircleCheck,CircleAlert } from "lucide-svelte";
 	import { fly } from "svelte/transition";
         import { goto } from '$app/navigation';
-        import { onMount } from 'svelte';
-  import intlTelInput from 'intl-tel-input';
-   import 'intl-tel-input/build/css/intlTelInput.css';
+        import { onDestroy, onMount } from 'svelte';
+        import { browser } from "$app/environment";
 
 
 
@@ -67,37 +66,41 @@
   let countryCode = $state();
 
 
-  onMount(() => {
-    iti = intlTelInput(inputElement, {
-      initialCountry: 'auto',
-      separateDialCode: true,
-      geoIpLookup: function (callback) {
-        fetch('https://ipapi.co/json')
-          .then((res) => res.json())
-          .then((data) => callback(data.country_code))
-          .catch(() => callback('us'));
-      },
-      utilsScript:
-        'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js',
-        
-      
-  
-    });
-    countryCode = iti.getSelectedCountryData().dialCode;
-    
-    // 2. Listen for the 'countrychange' event
-      inputElement.addEventListener('countrychange', () => {
-      countryCode = iti.getSelectedCountryData().dialCode;
-      console.log(`Country changed, new dial code: ${countryCode}`) });
-    
-    return () => {
-      iti.destroy();
-    };
-  });
+onMount(async () => {
+		// Load dynamically to avoid SSR issues
+		const intlTelInput = (await import('intl-tel-input')).default;
+		await import('intl-tel-input/build/css/intlTelInput.css');
+
+		iti = intlTelInput(inputElement, {
+			initialCountry: 'auto',
+			separateDialCode: true,
+			geoIpLookup: (callback) => {
+				fetch('https://ipapi.co/json')
+					.then((res) => res.json())
+					.then((data) => callback(data.country_code))
+					.catch(() => callback('us'));
+			},
+			utilsScript:
+				'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/25.3.2/js/utils.js'
+		});
+
+		// Get the initial dial code
+		countryCode = iti.getSelectedCountryData().dialCode;
+
+		// Listen for changes
+		inputElement.addEventListener('countrychange', () => {
+			countryCode = iti.getSelectedCountryData().dialCode;
+		});
+	});
+
+	onDestroy(() => {
+		if (iti) {
+			iti.destroy();
+		}
+	});
 
   function onsubmit(){
         loading = true;
-      // e.g. +251912345678
     }
   
   let phoneNumber = $state('');
@@ -161,6 +164,7 @@
 
  
 </script>
+
 {#snippet labels(labels, fors)}
   <label for = {fors} class="block mb-2 text-[17px] text-gray-700">{labels}</label>
 {/snippet}
@@ -246,6 +250,8 @@ class="bg-cover bg-no-repeat lg:h-[60vh] h-[35vh] flex flex-col justify-center i
        class="phone-input w-[100%] p-3 mb-5 border-1 border-gray-200 rounded-md
    bg-gray-50 text-base focus:ring-light-blue-4 focus:ring-1 focus:outline-none focus:bg-light-blue-1"  placeholder="00000000" name="phone"/>
    
+
+    
 
    {#if isValidLocalNumber()}
 
