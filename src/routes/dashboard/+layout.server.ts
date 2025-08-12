@@ -4,6 +4,8 @@ import { db } from "$lib/server/db";
 import { quotes, replies } from "$lib/server/db/schema";
 
 
+
+
 export const load: PageServerLoad = async (event) => {
     if (!event.locals.user) {
         return redirect(302, '/login');
@@ -28,3 +30,9 @@ id: replies.id    })
     unrepliedCount,
   };
 };
+
+
+
+
+
+

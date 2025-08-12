@@ -52,7 +52,8 @@
 
 </svelte:head>
 
-{#if !page.url.pathname.includes('/dashboard')}
+{#if !page.url.pathname.includes('/dashboard') && !page.url.pathname.includes('/login')}
+
 
 <Header {scrolled} />
 

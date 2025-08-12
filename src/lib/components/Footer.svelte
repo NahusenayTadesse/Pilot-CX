@@ -24,7 +24,7 @@
 
   <div class='grid lg:grid-cols-4 grid-cols-1 lg:justify-items-center justify-center items-start content-center gap-4 w-[90%] mx-auto mt-16 '>
       <div class="flex flex-col gap-4 lg:h-[200px] justify-center items-center">
-          <img src="/Logo.svg" alt="Pilot CX Logo" class="w-[190px] h-[46px]" loading="lazy"/>    
+          <img src="/Logo.svg" alt="Pilot CX Logo" class="w-[295px] h-[46px]" loading="lazy"/>    
           <h4 class="text-dark-1">Your CX Co-pilot</h4>
       </div>
       <div class="flex flex-col gap-4">
@@ -39,24 +39,27 @@
     {/each}   
      
       </div>
+          <div class="flex flex-col gap-4">
+       <h6 class="text-dark-1">Why PilotCX</h6>
+        <p class="text-dark-1">SaaS-Only Expertise</p>
+        <p class="text-dark-1">Fast Onboarding</p>
+        <p class="text-dark-1">Reliable Support</p>
+        <p class="text-dark-1">Measurable Results</p>
+
+       
+         
+        
+
+       </div>
        <div class="flex flex-col gap-4">
             <h6 class="text-dark-1">Let's Talk Support</h6>
 
 
-            <p class="text-dark-1"><AtSign class="inline-block mr-1" /> <a href="mailto:info@pilotcx.com">info@pilotcx.com</a></p>
-            <p class="text-dark-1"><Phone class="inline-block mr-1 fill-white" /> <a href="tel:+251 708620046">+251 708620046 </a></p>
+            <p class="text-dark-1 transition-transform duration-300 ease-in-out hover:scale-125"><AtSign class="inline-block mr-1" /> <a href="mailto:info@pilotcx.com">info@pilotcx.com</a></p>
+            <p class="text-dark-1 transition-transform duration-300 ease-in-out hover:scale-125"><Phone class="inline-block mr-1 fill-white" /> <a href="tel:+251 708620046">+251 708620046 </a></p>
             <p class="text-dark-1"><Clock4 class="inline-block mr-1 " /> 24/7</p>
        </div>
-       <!-- <div class="flex flex-col gap-4">
-       <h6 class="text-dark-1">Subscribe</h6>
-       <form method="POST" class="flex flex-row flex-wrap gap-2">
-        <input type="email" name="email" id="email" class="border-1 border-white rounded-[16px] h-12 placeholder:text-white pl-4" placeholder="Subscribe">
-        <button class="{btnWhiteFilled} !h-12 !p-2 !px-4 !text-[17px]">Get News</button>
-        </form>
-         
-        
-
-       </div> -->
+   
 
   </div>
              <p class="text-dark-1 text-center !text-[16px] lg:mt-24 mt-8">&copy; {currentYear} Pilot CX. All Rights Reserved</p>

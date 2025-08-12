@@ -1,4 +1,4 @@
-import { hash, verify } from '@node-rs/argon2';
+import { verify } from '@node-rs/argon2';
 // import { encodeBase32LowerCase } from '@oslojs/encoding';
 import { fail, redirect } from '@sveltejs/kit';
 import { eq } from 'drizzle-orm';
@@ -22,18 +22,18 @@ export const actions: Actions = {
 
 		if (!validateUsername(username)) {
 			return fail(400, {
-				message: 'Invalid username (min 3, max 31 characters, alphanumeric only)'
+				message: 'Invalid username or password'
 			});
 		}
 		if (!validatePassword(password)) {
-			return fail(400, { message: 'Invalid password (min 6, max 255 characters)' });
+			return { message: 'Invalid password or password' };
 		}
 
 		const results = await db.select().from(table.user).where(eq(table.user.username, username));
 
 		const existingUser = results.at(0);
 		if (!existingUser) {
-			return fail(400, { message: 'Incorrect username or password' });
+			return { message: 'Incorrect username or password' };
 		}
 
 		const validPassword = await verify(existingUser.passwordHash, password, {
@@ -43,7 +43,7 @@ export const actions: Actions = {
 			parallelism: 1
 		});
 		if (!validPassword) {
-			return fail(400, { message: 'Incorrect username or password' });
+			return  { message: 'Incorrect username or password' };
 		}
 
 		const sessionToken = auth.generateSessionToken();

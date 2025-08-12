@@ -23,7 +23,7 @@
 
     {@render choose('/images/choose1.svg', 'Fast and flexible onboarding')}
     {@render choose('/images/choose2.svg', 'Startup friendly pricing')}
-    {@render choose('/images/choose3.svg', 'Startup friendly pricing')}
+    {@render choose('/images/choose3.svg', 'Reliable Support')}
     {@render choose('/images/choose4.svg', 'Actionable Analytics and weekly reports')}
   
 

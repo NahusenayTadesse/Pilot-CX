@@ -1,10 +1,11 @@
 <script lang="ts">
     let { data, children } = $props();
     import {page} from '$app/state';
-      import { MessageSquare, Inbox, NotebookPen, Megaphone } from 'lucide-svelte';
+      import { MessageSquare, Inbox, NotebookPen, Megaphone, LogOut } from 'lucide-svelte';
 
 
     import { LayoutDashboard, Quote, MessageSquareQuote } from '@lucide/svelte';
+	import { enhance } from '$app/forms';
 
 let currentPage = $state(page.url.pathname.charAt(1).toUpperCase() + page.url.pathname.slice(2));
 
@@ -17,12 +18,12 @@ let currentPage = $state(page.url.pathname.charAt(1).toUpperCase() + page.url.pa
     { name: 'Annoucement', href: '/dashboard/announcement', icon: Megaphone }
    
   ];
+    let sidebar = $state(false);
+    let submitting = $state(false);
 
-
-
-
-  let sidebar = $state(false);
-
+    function onsubmit() {
+        submitting = true;
+    }
 
 </script>
 
@@ -71,7 +72,7 @@ let currentPage = $state(page.url.pathname.charAt(1).toUpperCase() + page.url.pa
 
 
 <main class="flex flex-col p-2 flex-1 {sidebar ? 'ml-[250px]' : 'ml-[80px]'} pb-16 transition-all duration-300 ease-in-out">
-  <header class="transition-transform duration-300 shadow-md rounded-lg p-4 flex flex-row gap-2 justify-center items-center">
+  <header class="relative transition-transform duration-300 shadow-md rounded-lg p-4 flex flex-row gap-2 justify-center items-center gap-4">
 
     <MessageSquare class="w-6 h-6 text-light-blue-5" />
   
@@ -82,6 +83,13 @@ let currentPage = $state(page.url.pathname.charAt(1).toUpperCase() + page.url.pa
     
       <p class="text-sm text-gray-500">Unreplied Quotes</p>
       <p class="text-2xl font-semibold text-gray-900">{data?.unrepliedCount.length - data?.replyCount.length}</p>
+
+      <form method="post" action="?/logout" use:enhance {onsubmit}>
+    <button type="submit" name="logout" class="absolute right-4 top-4 flex flex-row gap-2 items-center justify-center" disabled={submitting}>
+         <LogOut class="{submitting ? 'animate-spin': ''} w-4 h-4" />
+        {submitting ? "Logging out..." : "Logout"}
+    </button>
+</form>
    
   
   </header>

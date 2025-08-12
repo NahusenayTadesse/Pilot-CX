@@ -1,10 +1,9 @@
-import { mysqlTable,  int, varchar, datetime, text, timestamp, decimal, serial } from 'drizzle-orm/mysql-core';
+import { mysqlTable,  int, varchar, datetime, text, timestamp } from 'drizzle-orm/mysql-core';
 
 
 export const user = mysqlTable('user', {
 	id: varchar('id', { length: 255 }).primaryKey(),
 	username: varchar('username', { length: 32 }).notNull().unique(),
-	email: varchar('email', {length: 50}).notNull().default('hello@pilotcx.com'),
 	passwordHash: varchar('password_hash', { length: 255 }).notNull()
 });
 
