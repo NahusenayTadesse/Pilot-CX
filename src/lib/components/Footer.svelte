@@ -1,6 +1,6 @@
  <script>
 	import { btnWhiteFilled } from "$lib/global.svelte";
-	import { AtSign, Clock4, MapPin, Phone } from "lucide-svelte";
+	import { AtSign, Clock4, Phone } from "lucide-svelte";
 
      let sections = [
          { id: '', name: 'Home'},
@@ -24,7 +24,7 @@
 
   <div class='grid lg:grid-cols-4 grid-cols-1 lg:justify-items-center justify-center items-start content-center gap-4 w-[90%] mx-auto mt-16 '>
       <div class="flex flex-col gap-4 lg:h-[200px] justify-center items-center">
-          <img src="/Logo.svg" alt="Pilot CX Logo" class="w-[190px] h-[46px]" />    
+          <img src="/Logo.svg" alt="Pilot CX Logo" class="w-[190px] h-[46px]" loading="lazy"/>    
           <h4 class="text-dark-1">Your CX Co-pilot</h4>
       </div>
       <div class="flex flex-col gap-4">
@@ -43,9 +43,8 @@
             <h6 class="text-dark-1">Let's Talk Support</h6>
 
 
-            <p class="text-dark-1"><MapPin class="inline-block mr-1" /> <a href="mailto:info@pilotcx.com">Addis Ababa, Ethiopia</a></p>
             <p class="text-dark-1"><AtSign class="inline-block mr-1" /> <a href="mailto:info@pilotcx.com">info@pilotcx.com</a></p>
-            <p class="text-dark-1"><Phone class="inline-block mr-1 fill-white" /> <a href="tel:251xxxxxxx">+251 XXXXXXXX</a></p>
+            <p class="text-dark-1"><Phone class="inline-block mr-1 fill-white" /> <a href="tel:+251 708620046">+251 708620046 </a></p>
             <p class="text-dark-1"><Clock4 class="inline-block mr-1 " /> 24/7</p>
        </div>
        <!-- <div class="flex flex-col gap-4">

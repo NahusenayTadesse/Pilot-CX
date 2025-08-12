@@ -41,7 +41,7 @@
     <nav class="hidden lg:flex justify-between px-[10%] 
     items-center space-x-4  py-8 fixed top-0 z-50 w-screen bg-[#2e86c7]  {scrolled ? 'backdrop-blur-lg bg-white/30': 'bg-transparent'} transition-all duration-300 ease-in-out">
         <a href="/" title="Home">
-        <img src="{scrolled ? '/LogoforWhite.svg' : '/Logo.svg'}" alt="Pilot CX Logo" class="w-[190px] h-[46px] hover:scale-125 transition-all duration-300 ease-in-out" />
+        <img src="{scrolled ? '/LogoforWhite.svg' : '/Logo.svg'}" alt="Pilot CX Logo" class="w-[190px] h-[46px] hover:scale-125 transition-all duration-300 ease-in-out" loading="lazy" />
         
             </a>
         <div class="flex flex-row gap-5 justify-center items-center">

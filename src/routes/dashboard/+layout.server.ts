@@ -1,6 +1,5 @@
 import { redirect } from "@sveltejs/kit";
 import type { PageServerLoad } from "./$types";
-import { eq, sql } from "drizzle-orm";
 import { db } from "$lib/server/db";
 import { quotes, replies } from "$lib/server/db/schema";
 

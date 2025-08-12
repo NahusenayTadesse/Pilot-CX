@@ -11,7 +11,7 @@
     
 {/snippet}
 
-<section id="why-choose-us" class="flex lg:flex-row flex-col flex-wrap items-center justify-center justify-self-center ml-[8%] mr-[5%] mt-32">
+<section id="why-choose-us" class="flex lg:flex-row flex-col items-center justify-center gap-4 justify-self-center ml-[8%] mr-[5%] lg:mt-32 mt-4">
 
  <div class="flex flex-col lg:items-start items-center justify-center gap-2 w-full lg:w-[40%]">
     <h2 class="text-dark-6 text-start">Why Choose <span class="text-light-blue-4">Us?</span></h2>

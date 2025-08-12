@@ -1,7 +1,7 @@
 <script lang="ts">
     let { data, children } = $props();
     import {page} from '$app/state';
-      import { MessageSquare, Inbox } from 'lucide-svelte';
+      import { MessageSquare, Inbox, NotebookPen, Megaphone } from 'lucide-svelte';
 
 
     import { LayoutDashboard, Quote, MessageSquareQuote } from '@lucide/svelte';
@@ -12,7 +12,9 @@ let currentPage = $state(page.url.pathname.charAt(1).toUpperCase() + page.url.pa
   const navItems = [
     { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
     { name: 'Quotes', href: '/dashboard/quotes', icon: Quote},
-    { name: 'Messages', href: '/dashboard/parents', icon: MessageSquareQuote }
+    { name: 'Messages', href: '/dashboard/messages', icon: MessageSquareQuote },
+    { name: 'Blogs', href: '/dashboard/blogs', icon: NotebookPen },
+    { name: 'Annoucement', href: '/dashboard/announcement', icon: Megaphone }
    
   ];
 

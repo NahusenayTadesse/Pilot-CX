@@ -175,7 +175,7 @@ onMount(async () => {
   {/snippet}
 
 {#if visible}
-  <div class="bg-green-600 w-[400px] flex flex-row flex-wrap text-white fixed bottom-2 right-1 rounded-md p-4" transition:fly={{ x: 200, duration: 500 }}>
+  <div class="bg-green-600 lg:w-[400px] w-4/5 z-100 flex flex-row flex-wrap text-white fixed bottom-2 right-1 rounded-md p-4" transition:fly={{ x: 200, duration: 500 }}>
    
     <CircleCheck class="text-white justify-self-center w-8 h-8" />
     <h6 class="text-white font-bold">Thank you for submitting! We will get back to you soon.</h6>
@@ -183,7 +183,7 @@ onMount(async () => {
 {/if}
 
 {#if errorVisible}
-  <div class="bg-red-600 w-[400px] flex flex-row flex-wrap text-white fixed bottom-2 right-1 rounded-md p-4" transition:fly={{ x: 200, duration: 500 }}>
+  <div class="bg-red-600 lg:w-[400px] w-4/5 z-100 flex flex-row flex-wrap text-white fixed bottom-2 right-1 rounded-md p-4" transition:fly={{ x: 200, duration: 500 }}>
     
     <CircleAlert class="text-white justify-self-center w-8 h-8" />
     <h6 class="text-white font-bold">Oops! {form?.error}.</h6>

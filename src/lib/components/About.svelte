@@ -6,7 +6,7 @@
 {#snippet mission(image, title, description)}
 
   <div class="flex flex-col gap-2 justify-center items-center">
-    <img src="/icons/{image}.svg" alt="{title} icon" class="lg:w-[125px] lg:h-[125px] w-16   h-16 justify-self-center">
+    <img src="/icons/{image}.svg" alt="{title} icon" class="lg:w-[125px] lg:h-[125px] w-16   h-16 justify-self-center" loading="lazy">
     <h5 class="text-dark-6 text-center">{title}</h5>
     <p class="text-center lg:px-0 px-4">{description}</p>
      

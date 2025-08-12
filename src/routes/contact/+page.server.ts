@@ -3,7 +3,6 @@ import { quotes } from '$lib/server/db/schema';
 import type { Actions } from './$types';
 import nodemailer from 'nodemailer';
 import { HOST, USER, PASSWORD } from '$env/static/private';
-import path from 'path';
 
 async function sendEmails(data: {
 	firstName: string;
@@ -44,7 +43,7 @@ async function sendEmails(data: {
 	const htmlContent = `
 	<div style="font-family: Arial, sans-serif; color: #333; line-height: 1.6; max-width: 600px; margin: 0 auto;">
 		<div style="background-color: #2F86C7; height: 100px; text-align: center; margin-bottom: 20px; padding-top: 50px">
-			<img src="cid:logo" alt="Pilot CX Logo" style="width: 150px; height: auto;" />
+			<img src="https://pilotcx.com/Logo.svg" alt="Pilot CX Logo" style="width: 150px; height: auto;" />
 		</div>
 		<h2 style="color: #27b4f2;">Thank You for Your Submission!</h2>
 		<p>Hi ${firstName},</p>
@@ -62,7 +61,7 @@ Pilot CX </a> All Rights Reserved </p>
 	const adminhtml = `
 	<div style="font-family: Arial, sans-serif; color: #333; line-height: 1.6; max-width: 600px; margin: 0 auto;">
 	<div style="background-color: #2F86C7; height: 100px; text-align: center; margin-bottom: 20px; padding-top: 50px">
-			<img src="cid:logo" alt="Pilot CX Logo" style="width: 150px; height: auto;" />
+			<img src="https://pilotcx.com/Logo.svg" alt="Pilot CX Logo" style="width: 150px; height: auto;" />
 		</div>
 		<h2 style="color: #27b4f2;">New Quote Submission Received</h2>
 
@@ -83,21 +82,13 @@ Pilot CX </a> All Rights Reserved </p>
 	</div>
 	`;
 
-	const logoPath = path.join(process.cwd(), 'static', 'Logo.svg');
 
 	// Send to user
 	await transporter.sendMail({
 		from: `"Pilot CX" <${USER}>`,
 		to: email,
 		subject: 'Thank you for contacting Pilot CX!',
-		html: htmlContent,
-		attachments: [
-			{
-				filename: 'Logo.svg',
-				path: logoPath,
-				cid: 'logo'
-			}
-		]
+		html: htmlContent
 	});
 
 	// Send to admin
@@ -105,14 +96,7 @@ Pilot CX </a> All Rights Reserved </p>
 		from: `"Quote Request Form" <${USER}>`,
 		to: 'hello@pilotcx.com',
 		subject: '📩 New Quote Form Submission',
-		html: adminhtml,
-		attachments: [
-			{
-				filename: 'Logo.svg',
-				path: logoPath,
-				cid: 'logo'
-			}
-		]
+		html: adminhtml
 	});
 }
 

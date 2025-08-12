@@ -32,7 +32,7 @@
       <h4>{title}</h4>
       {#each array as list}
       <div class="flex flex-row gap-2">
-       <img src="/icons/listPlane.svg" alt="Arrow">
+       <img src="/icons/listPlane.svg" alt="Arrow" loading="lazy">
         <p>{list}</p>
        </div>
       {/each}
