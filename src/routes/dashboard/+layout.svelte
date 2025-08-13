@@ -102,7 +102,7 @@ let currentPage = $state(page.url.pathname.charAt(1).toUpperCase() + page.url.pa
             </div>
     </main>
 </div>
-
+<!-- Mobile Bottom Menu -->
 <section class="lg:hidden flex flex-col p-0">
   <button onclick={()=>open = !open} class="fixed top-2 left-4"><Menuicon /></button>
   {#if open} 
@@ -130,7 +130,7 @@ let currentPage = $state(page.url.pathname.charAt(1).toUpperCase() + page.url.pa
     <a href={item.href} class="flex flex-col gap-1 text-white justify-center items-center">
    
     <item.icon size="18" />
-    <p class="text-[10px] tex-white">{item.name}</p>
+    <p class="text-[8px] tex-white">{item.name}</p>
     
 
     </a>

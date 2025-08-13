@@ -1,4 +1,6 @@
 <script>
+	import { bounceIn } from 'svelte/easing';
+
 
   import { fly } from 'svelte/transition';
 
@@ -55,7 +57,7 @@
 {#snippet packages(array, title, number, delay)}
   <div class="rounded-[40px] px-8 py-8 lg:w-[600px] lg:h-[400px] bg-light-blue-1 
   bg-bottom-right bg-no-repeat bg-[length:200px_auto] flex flex-col gap-4
-  hover:scale-105 transition-transform ease-in-out duration-300" 
+  hover:scale-102 transition-transform ease-in-out duration-300" 
   style="background-image: url('/images/cloud.svg'); z-index-10"
   transition:fly={{x:number, duration: 1000, delay}}>
       <h4>{title}</h4>
@@ -74,16 +76,16 @@
 {/snippet}
 <section class="flex flex-col items-center justify-center w-full gap-4 p-4" bind:this={el}>
   {#if visible}
-  <h2 class="text-dark-6">Packages</h2>
-  <p class="text-dark-4 lg:w-[447px]">Whether you're just getting started or scaling fast, we’ve got a support package that fits your journey </p>
+  <h2 class="text-dark-6" transition:fly={{y:-200, duration: 1000}}>Packages</h2>
+  <p class="text-dark-4 lg:w-[447px]" transition:fly={{y:200, duration: 1000, delay: 300}}>Whether you're just getting started or scaling fast, we’ve got a support package that fits your journey </p>
    
   <div class="grid lg:grid-cols-2 grid-cols-1 gap-4 pt-4">
 
     <div class="relative rounded-[40px] px-8 py-8 lg:w-[600px] lg:h-[400px] bg-light-blue-4   
   bg-bottom-right bg-no-repeat bg-[length:200px_auto] flex flex-col gap-4
-  hover:scale-105 transition-transform ease-in-out duration-300" 
+  hover:scale-102 transition-transform ease-in-out duration-300" 
   style="background-image: url('/images/cloud.svg'); z-index-10"
-  transition:fly={{x:-400, duration: 1000, delay:500}}>
+  transition:fly={{x:-400, duration: 1000, delay:500 }}>
       <h4 class="text-dark-1">Dedicated agents(24/7) </h4>
       <img src="/images/cloudAbsolute.svg" 
       class="w-[100px] absolute top-1 right-2 hidden lg:block" alt="Cloud">

@@ -44,7 +44,7 @@
 {#snippet card(src, title, description, number)}
     <div class="bg-light-blue-1 flex flex-col items-start justify-start p-8 
     border border-light-2 rounded-[40px] lg:w-[400px] gap-2
-    transition-transform ease-in-out duration-300 hover:scale-110 z-10" in:fade={{ duration: 1000, delay: number }} out:fade >
+    transition-transform ease-in-out duration-300 hover:scale-105 z-10" in:fade={{ duration: 1000, delay: number }} out:fade >
             <img {src} alt="{title}" class="w-[40px] h-[40px]" loading="lazy"/>
             <h5 class="text-dark-6">{title}</h5>
         <p class="text-dark-4">{description}</p>
@@ -74,7 +74,7 @@
      <div 
      class="bg-light-blue-4 flex flex-col items-start justify-start
       p-8 border border-light-2 rounded-[40px] lg:w-[400px] rotate-[3deg] hover:rotate-0 -mr-2 gap-2
-      transition-transform ease-in-out duration-300 hover:scale-110"
+      transition-transform ease-in-out duration-300 hover:scale-105"
        in:fade={{duration: 1000, delay: 300 }} out:fade
        >
           <img src="/icons/chat.svg" alt="Live Chat & Email Support" class="w-[40px] h-[40px]"  />

@@ -43,7 +43,7 @@
  
 <div class="relative flex flex-col items-center justify-center w-full gap-2 p-4 pt-0" bind:this={el}>
    {#if visible}
-  <h2 class="text-dark-6" transition:fly={{y:-300, duration: 1000}}>About <span class="text-light-blue-4">Us</span></h2>
+  <h2 class="text-dark-6" transition:fly={{y:-100, duration: 1000}}>About <span class="text-light-blue-4">Us</span></h2>
   <p class="text-dark-4 lg:w-[882px]">
 
 <span class="text-light-blue-4 text-center" transition:fade={{duration: 1000}}>PilotCX </span>
@@ -65,11 +65,11 @@ We believe every SaaS startup deserves world-class customer support without losi
 
 <div class="flex flex-col gap-4 justify-center items-center" bind:this={el}>
   {#if visible}
-     <h2 class="text-center" transition:fly={{y:-300, duration: 1000}}>Our <span class="text-light-blue-4" >Mission</span></h2>
+     <h2 class="text-center" transition:fly={{y:-100, duration: 1000, delay: 500}}>Our <span class="text-light-blue-4" >Mission</span></h2>
      <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 justify-center items-center align-middle">
-        <div transition:fly={{x:-300, duration: 2000, delay: 500}}>{@render mission('Target', 'Specialization', 'We work with SaaS companies, so every strategy, tool, and process we use is built for your world.')}</div>
-        <div transition:fly={{y:-300, duration: 2000, delay: 500}}>{@render mission('growth', 'Results', 'Our success is defined by quicker resolutions, happier customers, and tangible growth in your support metrics.' )}</div>
-        <div transition:fly={{x: 300, duration: 2000, delay: 500}}>{@render mission('Shield','Reliability', 'You can count on us to deliver dependable, top-tier customer support day after day.')}</div>
+        <div transition:fly={{x:-300, duration: 2000, delay: 1000}}>{@render mission('Target', 'Specialization', 'We work with SaaS companies, so every strategy, tool, and process we use is built for your world.')}</div>
+        <div transition:fly={{y:-100, duration: 2000, delay: 1000}}>{@render mission('growth', 'Results', 'Our success is defined by quicker resolutions, happier customers, and tangible growth in your support metrics.' )}</div>
+        <div transition:fly={{x: 300, duration: 2000, delay: 1000}}>{@render mission('Shield','Reliability', 'You can count on us to deliver dependable, top-tier customer support day after day.')}</div>
       </div>
         {/if}
     </div>

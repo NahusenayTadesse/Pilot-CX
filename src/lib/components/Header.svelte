@@ -1,8 +1,9 @@
 
  <script>
+	import { afterNavigate } from "$app/navigation";
 	import { btnFilled, btnWhiteFilled } from "$lib/global.svelte";
 	import { AlignJustify, X } from "lucide-svelte";
-	import { slide } from "svelte/transition";
+	import { fly, slide } from "svelte/transition";
 
      let sections = [
          { id: 'services', name: 'Services' },
@@ -31,23 +32,34 @@
     let  Menuicon = $derived (menu ? X : AlignJustify);
   let {scrolled=false} = $props();
 
+    let visible = $state(false)
+  let duration;
+
+  afterNavigate(({ from }) => {
+    duration = from === null ? 600 : 0;
+    visible = true;
+  });
+
   
 
 
 
   
  </script>
-
+  {#if visible}
     <nav class="hidden lg:flex justify-between px-[10%] 
-    items-center space-x-4  py-8 fixed top-0 z-50 w-screen bg-[#2e86c7]  {scrolled ? 'backdrop-blur-lg bg-white/30': 'bg-transparent'} transition-all duration-300 ease-in-out">
+    items-center space-x-4  py-8 fixed top-0 z-50 w-screen bg-[#2e86c7]  
+    {scrolled ? 'backdrop-blur-lg bg-white/30': 'bg-transparent'} 
+    transition-all duration-300 ease-in-out"
+    transition:fly={{y:-200, duration: 1000, delay: 500 }}>
         <a href="/" title="Home">
-        <img src="{scrolled ? '/LogoforWhite.svg' : '/Logo.svg'}" alt="Pilot CX Logo" class="w-[190px] h-[46px] hover:scale-125 transition-all duration-300 ease-in-out" loading="lazy" />
+        <img src="{scrolled ? '/LogoforWhite.svg' : '/Logo.svg'}" alt="Pilot CX Logo" class="w-[190px] h-[46px] hover:scale-110 transition-all duration-300 ease-in-out" loading="lazy" />
         
             </a>
         <ul class="flex flex-row gap-5 justify-center items-center">
         
         {#each sections as section}
-           <li class="hover:scale-125 transition-transform duration-300 ease-in-out text-lg">
+           <li class="hover:scale-110 transition-transform duration-300 ease-in-out text-lg">
             <a
                 href="/#{section.id}"
                 title={section.name}
@@ -61,6 +73,7 @@
     
         <a href="/contact" class="{scrolled ? btnFilled : btnWhiteFilled} !py-[12px] !text-[17px]">Get a Quote</a>
     </nav>
+    {/if}
 
 
  <!-- Nav Mobile --> 

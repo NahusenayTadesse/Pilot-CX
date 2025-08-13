@@ -6,6 +6,7 @@
     import RiveAnimation from "$lib/RiveAnimation.svelte";
      import { afterNavigate } from '$app/navigation';
     import { fly } from 'svelte/transition';
+	import { bounceInOut } from "svelte/easing";
 
     
     
@@ -25,20 +26,24 @@
 <section class="lg:h-[100vh] h-[80vh] flex lg:pt-[0px] pt-[40px] justify-center items-center min-h-[70vh]text-white text-center bg-[#2e86c7]">
     <div class="mx-auto z-2">
         {#if visible}
-        <h1 class="mb-4 font-bold font-sans text-dark-1" transition:typewriter={{ speed: 50 }}>
-            With PilotCX You Navigate <br class="hidden lg:flex" /> Customer Experience with Ease
+<h1
+  class="mb-4 font-bold font-sans text-dark-1"
+  transition:fly={{y:100, duration: 2000 }}
+>            With PilotCX You Navigate 
+        
+                 Customer Experience with Ease
         </h1>
         
-        <p class="text-[17px] font-Inter text-dark-2 mb-8 lg:w-[649px] justify-self-center" transition:fly={{y:300, duration: 1000 }}>
+        <p class="text-[17px] font-Inter text-dark-2 mb-8 lg:w-[649px] justify-self-center" transition:fly={{y:150, duration: 1000, delay: 1000 }}>
             While you focus on building product and hitting growth milestones, PilotCX keeps your support smooth, responsive, and always on course.
         </p>
         {/if}
         <div class="flex flex-row justify-center gap-[26px]">
             {#if visible}
-            <a href="/contact" class= {btnWhiteFilled} transition:fly={{x:-600, duration: 1000 }}>
+            <a href="/contact" class= {btnWhiteFilled} transition:fly={{y:200, duration: 1000, delay: 2000}}>
                 Get a Quote
             </a>
-            <a href="#about" class="lg:{btnWhiteHallow} {btnFilled}" transition:fly={{x:600, duration: 1000 }}>
+            <a href="#about" class="lg:{btnWhiteHallow} {btnFilled}" transition:fly={{y:200, duration: 1000, delay: 2000 }}>
                 Learn More
             </a>
             {/if }
