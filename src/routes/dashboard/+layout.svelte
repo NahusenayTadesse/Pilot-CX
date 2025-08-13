@@ -98,6 +98,7 @@ let currentPage = $state(page.url.pathname.charAt(1).toUpperCase() + page.url.pa
   
   </header>
        <div class="p-8">
+         {@render children()}
             </div>
     </main>
 </div>

@@ -44,16 +44,21 @@
         <img src="{scrolled ? '/LogoforWhite.svg' : '/Logo.svg'}" alt="Pilot CX Logo" class="w-[190px] h-[46px] hover:scale-125 transition-all duration-300 ease-in-out" loading="lazy" />
         
             </a>
-        <div class="flex flex-row gap-5 justify-center items-center">
+        <ul class="flex flex-row gap-5 justify-center items-center">
+        
         {#each sections as section}
+           <li class="hover:scale-125 transition-transform duration-300 ease-in-out text-lg">
             <a
                 href="/#{section.id}"
-                class="{scrolled ? 'text-dark-6': 'text-dark-1'} transition-transform duration-300 ease-in-out hover:scale-125 text-lg"
+                title={section.name}
+                class="{scrolled ? 'text-dark-6': 'text-dark-1'}"
             >
                 {section.name}
             </a>
-        {/each}   
-    </div>
+            </li>
+        {/each} 
+        </ul> 
+    
         <a href="/contact" class="{scrolled ? btnFilled : btnWhiteFilled} !py-[12px] !text-[17px]">Get a Quote</a>
     </nav>
 
@@ -70,17 +75,22 @@
         <Menuicon class={scrolled ? 'text-light-blue-4': 'text-dark-1'} /> </button>
         {#if menu} 
          
-         <div class="flex flex-col w-[100%] absolute top-16 p-2 right-0 
+         <ul class="flex flex-col w-[100%] absolute top-16 p-2 right-0 
          z-100 gap-2 justify-center items-start pl-4 {scrolled ? 'bg-dark-1': 'bg-[#2e86c7]'}">
+         
         {#each mobileSections as section}
+        <li transition:slide|global>
             <a
                 href="/{section.id}"
+                title={section.name}
                 class="{scrolled ? 'text-dark-6': 'text-dark-1'} transition-transform duration-300 ease-in-out hover:scale-125"
-             transition:slide|global {onclick}>
+              {onclick}>
                 {section.name} 
             </a>
+            </li>
         {/each}  
-        </div>
+        </ul>
+       
          
         {/if}
 

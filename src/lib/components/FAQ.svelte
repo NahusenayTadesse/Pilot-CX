@@ -19,25 +19,55 @@
     answer: "Absolutely. Our agents are trained to match your brand’s tone and style, ensuring seamless communication that feels like an extension of your own team."
    }
  };
+
+ import { fly, fade } from "svelte/transition"
+
+ let el = $state();
+  let visible = $state(false);
+
+  $effect(() => {
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          visible = true;
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(el);
+
+    // Cleanup function (runs when effect re-runs or component unmounts)
+    return () => {
+      observer.disconnect();
+    };
+  });
+
 </script>
- <section class="flex flex-col items-center justify-center gap-8 p-8">
-  <h2 class="text-dark-6 text-center"> <span>F</span>requently <span>A</span>sked <span>Q</span>uestions</h2>
+ <section class="flex flex-col items-center justify-center gap-8 p-8" bind:this={el}>
+  {#if visible}
+  <h2 class="text-dark-6 text-center" transition:fly={{y:-300, duration: 1000}}> <span>F</span>requently <span>A</span>sked <span>Q</span>uestions</h2>
   <p class="text-dark-4 text-center max-w-[600px]">
  If You have any more questions you can contact our team <span>Here</span> We will be happy to answer any inquires  </p>
 <Accordion.Root type="single" class="w-full sm:max-w-[70%] flex flex-col gap-8" value="item-1">
 
- {#each Object.entries(accordionItems) as [value, { question, answer }] }
- <Accordion.Item value={value}>
+ {#each Object.entries(accordionItems) as [value, { question, answer}], index }
+ <Accordion.Item value={value} >
     <Accordion.Trigger>{question}</Accordion.Trigger>
   <Accordion.Content class="flex flex-col gap-4 text-balance">
-   <p>
+   <p transition:fly={{x:-300, duration: 1000, delay: index*100}}>
     {answer}
    </p>
   </Accordion.Content>
  </Accordion.Item>
     {/each}
 </Accordion.Root>
+{/if}
 </section>
+
 
 
 <style>

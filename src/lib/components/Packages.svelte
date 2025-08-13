@@ -1,4 +1,31 @@
 <script>
+
+  import { fly } from 'svelte/transition';
+
+ let el = $state();
+  let visible = $state(false);
+
+  $effect(() => {
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          visible = true;
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(el);
+
+    // Cleanup function (runs when effect re-runs or component unmounts)
+    return () => {
+      observer.disconnect();
+    };
+  });
+
   let dedicated = ['Fully managed, dedicated team aligned with your SaaS brand voice',
   'No task-sharing, full focus on your brand, tools and customers',
   'Ongoing QA and coaching included (no extra fees)',
@@ -25,43 +52,55 @@
   ]
 </script>
 
-{#snippet packages(array, title)}
+{#snippet packages(array, title, number, delay)}
   <div class="rounded-[40px] px-8 py-8 lg:w-[600px] lg:h-[400px] bg-light-blue-1 
-  bg-bottom-right bg-no-repeat bg-[length:200px_auto] flex flex-col gap-4" 
-  style="background-image: url('/images/cloud.svg'); z-index-10">
+  bg-bottom-right bg-no-repeat bg-[length:200px_auto] flex flex-col gap-4
+  hover:scale-105 transition-transform ease-in-out duration-300" 
+  style="background-image: url('/images/cloud.svg'); z-index-10"
+  transition:fly={{x:number, duration: 1000, delay}}>
       <h4>{title}</h4>
-      {#each array as list}
+      <ul class="flex flex-col gap-4">
+      {#each array as list, index}
+      <li>
       <div class="flex flex-row gap-2">
        <img src="/icons/listPlane.svg" alt="Arrow" loading="lazy">
-        <p>{list}</p>
+        <p transition:fly={{x: 300, duration: 3000, delay: index*100}}>{list}</p>
        </div>
+      </li>
       {/each}
+      </ul>
   </div>
   
 {/snippet}
-<section class="flex flex-col items-center justify-center w-full gap-4 p-4" >
+<section class="flex flex-col items-center justify-center w-full gap-4 p-4" bind:this={el}>
+  {#if visible}
   <h2 class="text-dark-6">Packages</h2>
   <p class="text-dark-4 lg:w-[447px]">Whether you're just getting started or scaling fast, we’ve got a support package that fits your journey </p>
    
   <div class="grid lg:grid-cols-2 grid-cols-1 gap-4 pt-4">
 
     <div class="relative rounded-[40px] px-8 py-8 lg:w-[600px] lg:h-[400px] bg-light-blue-4   
-  bg-bottom-right bg-no-repeat bg-[length:200px_auto] flex flex-col gap-4" 
-  style="background-image: url('/images/cloud.svg'); z-index-10">
+  bg-bottom-right bg-no-repeat bg-[length:200px_auto] flex flex-col gap-4
+  hover:scale-105 transition-transform ease-in-out duration-300" 
+  style="background-image: url('/images/cloud.svg'); z-index-10"
+  transition:fly={{x:-400, duration: 1000, delay:500}}>
       <h4 class="text-dark-1">Dedicated agents(24/7) </h4>
       <img src="/images/cloudAbsolute.svg" 
       class="w-[100px] absolute top-1 right-2 hidden lg:block" alt="Cloud">
+      <ul class="flex flex-col gap-4">
       {#each dedicated as list}
       <div class="flex flex-row gap-2">
        <img src="/icons/listPlaneWhite.svg" alt="Arrow">
         <p class="text-dark-1">{list}</p>
        </div>
       {/each}
+      </ul>
   </div>
-     {@render packages(hourly, 'Hourly basic')}
-     {@render packages(hourlyTech, 'Hourly Tech')}
-     {@render packages(payPer, 'Pay Per Resolution')}
+     {@render packages(hourly, 'Hourly basic', 400, 500)}
+     {@render packages(hourlyTech, 'Hourly Tech', -400, 1000)}
+     {@render packages(payPer, 'Pay Per Resolution', 400, 1000)}
   </div>
+  {/if}
   
 
 </section> 

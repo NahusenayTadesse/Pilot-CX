@@ -88,11 +88,11 @@
 
 
 <section class="relative flex flex-col items-center justify-center w-full gap-2 p-4" bind:this={componentElement} >
-   <button class="absolute -top-72 z-0 w-full lg:block hidden" 
+   <div class="absolute -top-72 z-0 w-full lg:block hidden" 
 
      >
 <RiveAnimation src="/animations/paper_plane_for_exper_section_loop_.riv" {riveInstance}  />
-</button>
+</div>
     
     
     <div class="relative flex flex-col lg:h-[50vh] mt-8 pb-8">
