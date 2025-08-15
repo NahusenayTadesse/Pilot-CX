@@ -109,16 +109,16 @@
           <canvas bind:this={canvas} class="w-full -z-1 h-full absolute lg:block hidden" ></canvas> 
 
            
-     {@render steps('/images/step1.svg', 'Step 1', 'Understand Your Needs', 
+     {@render steps('/images/step1.svg', 'Day 1-3', 'Understand Your Needs', 
      "We start with a quick 30-minute call to learn about your product and support goals. Within 48 hours, you'll get a tailored proposal with clear pricing and a CX strategy built around your needs.", true)}
-     {@render steps('/images/step3.svg', 'Step 2', 'Strategy Meets Structure', 
+     {@render steps('/images/step3.svg', 'Day 4 & 5', 'Strategy Meets Structure', 
      'We host a kickoff call to align on support tone, tools, expected volume, workflows, and success metrics—making sure we’re fully synced before launch. ', false)}
      
-      {@render steps('/images/step4.svg', 'Step 3', 'Your Brand, Our Agents', 
+      {@render steps('/images/step4.svg', 'Day 6-8', 'Your Brand, Our Agents', 
         'Our team gets trained on your tools, product, and brand tone. We prepare fast but thoroughly to ensure agents are ready to deliver on day one. ', true
      )}
      
-     {@render steps('/images/steps5.svg', 'Step 4', 'Test and Launch', 
+     {@render steps('/images/steps5.svg', 'Day 9 & 10', 'Test and Launch', 
      'We run a 24-hour dry run with real tickets so you can review quality. Once ready, we go live—providing full support while tracking performance and improving continuously.', false)}
      
      </div>
