@@ -6,7 +6,6 @@
     import RiveAnimation from "$lib/RiveAnimation.svelte";
      import { afterNavigate } from '$app/navigation';
     import { fly } from 'svelte/transition';
-	import { bounceInOut } from "svelte/easing";
 
     
     
@@ -29,9 +28,7 @@
 <h1
   class="mb-4 font-bold font-sans text-dark-1"
   transition:fly={{y:100, duration: 2000 }}
->            With PilotCX You Navigate 
-        
-                 Customer Experience with Ease
+>          Put Your Support in Expert Hands <br /> So You Can Build Faster.
         </h1>
         
         <p class="text-[17px] font-Inter text-dark-2 mb-8 lg:w-[649px] justify-self-center" transition:fly={{y:150, duration: 1000, delay: 1000 }}>
@@ -43,8 +40,8 @@
             <a href="/contact" class= {btnWhiteFilled} transition:fly={{y:200, duration: 1000, delay: 2000}}>
                 Get a Quote
             </a>
-            <a href="#about" class="lg:{btnWhiteHallow} {btnFilled}" transition:fly={{y:200, duration: 1000, delay: 2000 }}>
-                Learn More
+            <a href="#how-it-works" class="lg:{btnWhiteHallow} {btnFilled}" transition:fly={{y:200, duration: 1000, delay: 2000 }}>
+                How it works
             </a>
             {/if }
         </div>
