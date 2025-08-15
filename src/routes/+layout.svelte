@@ -52,7 +52,7 @@
 
 </svelte:head>
 
-{#if !page.url.pathname.includes('/dashboard') && !page.url.pathname.includes('/login')}
+{#if (!page.url.pathname.includes('/dashboard') && !page.url.pathname.includes('/login')) || page.status >= 400}
 
 
 <Header {scrolled} />
